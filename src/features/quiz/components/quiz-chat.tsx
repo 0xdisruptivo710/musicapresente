@@ -14,6 +14,7 @@ import {
 } from "./primitives";
 import { AdjustBox, LyricsCard } from "./lyrics-review";
 import { AudioRecorder } from "./audio-recorder";
+import { MusicPlayer } from "./music-player";
 
 const STEP_LABELS: Record<number, string> = {
   1: "Ocasião",
@@ -233,12 +234,32 @@ export function QuizChat() {
           )
         ) : null}
 
-        {/* Etapa 6 — música na fila */}
+        {/* Etapa 6 — música: produzindo → player V1/V2 */}
         {step === 6 ? (
-          <LoadingCard
-            title="Produzindo a sua música 🎧"
-            subtitle="A IA está lendo a sua história e já pegou um lenço de papel..."
-          />
+          quiz.songs.length > 0 ? (
+            <MusicPlayer songs={quiz.songs} />
+          ) : quiz.musicError ? (
+            <>
+              <SystemBubble>
+                Não consegui iniciar a música ({quiz.musicError.message}).
+              </SystemBubble>
+              <GradientButton onClick={quiz.retryMusic} className="self-end">
+                Tentar de novo
+              </GradientButton>
+            </>
+          ) : quiz.musicStatus === "failed" ? (
+            <>
+              <SystemBubble>A geração da música falhou. Vamos tentar de novo?</SystemBubble>
+              <GradientButton onClick={quiz.retryMusic} className="self-end">
+                Gerar de novo
+              </GradientButton>
+            </>
+          ) : (
+            <LoadingCard
+              title="Produzindo a sua música 🎧"
+              subtitle="A IA está compondo a sua canção... leva uns 2-3 minutinhos. Pode deixar esta tela aberta."
+            />
+          )
         ) : null}
 
         {quiz.error ? (

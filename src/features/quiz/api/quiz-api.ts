@@ -4,6 +4,7 @@ import type {
   LyricsDTO,
   OrderDTO,
   QuizPayload,
+  SongDTO,
 } from "@/features/quiz/types";
 
 export function createOrder(): Promise<CreateOrderResponse> {
@@ -30,6 +31,19 @@ export function generateLyrics(orderId: string, instruction?: string): Promise<L
     method: "POST",
     body: JSON.stringify(instruction ? { instruction } : {}),
   });
+}
+
+/** Dispara a geração da música (Suno, assíncrona). Devolve o taskId. */
+export function generateMusic(orderId: string): Promise<{ taskId: string }> {
+  return apiFetch<{ taskId: string }>(`/api/orders/${orderId}/music`, {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+}
+
+/** Lista as músicas (V1/V2) do pedido (vazio enquanto não ficam prontas). */
+export function getSongs(orderId: string): Promise<{ songs: SongDTO[] }> {
+  return apiFetch<{ songs: SongDTO[] }>(`/api/orders/${orderId}/songs`);
 }
 
 /** Envia um áudio (multipart) e devolve a transcrição em texto. */

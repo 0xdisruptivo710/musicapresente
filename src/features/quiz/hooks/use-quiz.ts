@@ -1,8 +1,15 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { createOrder, generateLyrics, saveQuiz } from "@/features/quiz/api/quiz-api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  createOrder,
+  generateLyrics,
+  generateMusic,
+  getOrder,
+  getSongs,
+  saveQuiz,
+} from "@/features/quiz/api/quiz-api";
 import { MAX_GENRES, type OptionItem } from "@/features/quiz/data";
 import type { LyricsDTO, QuizPayload } from "@/features/quiz/types";
 import type { VoiceGender } from "@/core/domain/value-objects/voice-gender";
@@ -25,7 +32,7 @@ const EMPTY: QuizSelections = {
   voiceGender: null,
 };
 
-/** Total de etapas de coleta (1..5); 6 = música na fila. */
+/** Total de etapas de coleta (1..5); 6 = música. */
 export const TOTAL_STEPS = 5;
 
 function toPayload(s: QuizSelections): QuizPayload {
@@ -40,14 +47,15 @@ function toPayload(s: QuizSelections): QuizPayload {
 }
 
 /**
- * Estado + persistência do quiz. Cada etapa salva no Order (resiliente a refresh,
- * CLAUDE.md §6). Na etapa 5 dispara a geração da letra (via OpenAI) e permite
- * ajustar/regenerar antes de escolher a voz e criar.
+ * Estado + persistência do quiz. Etapas 1-4 coletam e salvam; a 5 gera/ajusta a
+ * letra; ao "Criar Música" dispara a Suno e faz polling até a prévia ficar pronta.
  */
 export function useQuiz() {
   const [step, setStep] = useState(1);
   const [selections, setSelectionsState] = useState<QuizSelections>(EMPTY);
   const [lyrics, setLyrics] = useState<LyricsDTO | null>(null);
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const [musicStarted, setMusicStarted] = useState(false);
   const selectionsRef = useRef<QuizSelections>(EMPTY);
   const orderIdRef = useRef<string | null>(null);
 
@@ -67,6 +75,26 @@ export function useQuiz() {
     },
     onSuccess: (data) => setLyrics(data),
   });
+  const musicMutation = useMutation({
+    mutationFn: (id: string) => generateMusic(id),
+  });
+
+  // Polling do estado do pedido enquanto a música é produzida.
+  const orderStatusQuery = useQuery({
+    queryKey: ["order-status", orderId],
+    queryFn: () => getOrder(orderId as string),
+    enabled: musicStarted && orderId !== null && step === 6,
+    refetchInterval: (query) => {
+      const status = query.state.data?.status;
+      return status === "preview_ready" || status === "failed" ? false : 5000;
+    },
+  });
+
+  const songsQuery = useQuery({
+    queryKey: ["order-songs", orderId],
+    queryFn: () => getSongs(orderId as string),
+    enabled: orderStatusQuery.data?.status === "preview_ready" && orderId !== null,
+  });
 
   const update = useCallback((patch: Partial<QuizSelections>): QuizSelections => {
     const next = { ...selectionsRef.current, ...patch };
@@ -78,8 +106,9 @@ export function useQuiz() {
   const persist = useCallback(
     async (next: QuizSelections) => {
       if (!orderIdRef.current) {
-        const { orderId } = await createMutation.mutateAsync();
-        orderIdRef.current = orderId;
+        const { orderId: id } = await createMutation.mutateAsync();
+        orderIdRef.current = id;
+        setOrderId(id);
       }
       await saveMutation.mutateAsync(toPayload(next));
     },
@@ -162,10 +191,26 @@ export function useQuiz() {
     [update],
   );
 
+  const startMusic = useCallback(async () => {
+    const id = orderIdRef.current;
+    if (!id) return;
+    try {
+      await musicMutation.mutateAsync(id);
+      setMusicStarted(true);
+    } catch {
+      // erro disponível em musicMutation.error
+    }
+  }, [musicMutation]);
+
   const finish = useCallback(async () => {
     await persist(selectionsRef.current);
     setStep(6);
-  }, [persist]);
+    await startMusic();
+  }, [persist, startMusic]);
+
+  const retryMusic = useCallback(async () => {
+    await startMusic();
+  }, [startMusic]);
 
   const goBack = useCallback(() => {
     setStep((s) => Math.max(1, s - 1));
@@ -179,6 +224,10 @@ export function useQuiz() {
     lyricsError: (lyricsMutation.error ?? null) as Error | null,
     isSaving: createMutation.isPending || saveMutation.isPending,
     error: (saveMutation.error ?? createMutation.error) as Error | null,
+    musicStarting: musicMutation.isPending,
+    musicStatus: orderStatusQuery.data?.status ?? null,
+    musicError: (musicMutation.error ?? null) as Error | null,
+    songs: songsQuery.data?.songs ?? [],
     chooseCategory,
     chooseMoment,
     toggleGenre,
@@ -188,6 +237,7 @@ export function useQuiz() {
     regenerateLyrics,
     chooseVoice,
     finish,
+    retryMusic,
     goBack,
   };
 }

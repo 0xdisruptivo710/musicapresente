@@ -15,6 +15,7 @@ import { GenerateMusicUseCase } from '@/core/use-cases/music/generate-music.use-
 import { HandleSunoCallbackUseCase } from '@/core/use-cases/music/handle-suno-callback.use-case';
 import { SupabaseSongRepository } from '@/infra/repositories/supabase-song-repository';
 import { SunoMusicGateway } from '@/infra/gateways/suno/suno-music-gateway';
+import { GetSongsUseCase } from '@/core/use-cases/music/get-songs.use-case';
 
 /**
  * Composition root (CLAUDE.md §3): monta os Use Cases com suas dependências
@@ -88,4 +89,8 @@ export function makeGenerateMusicUseCase(): GenerateMusicUseCase {
 
 export function makeHandleSunoCallbackUseCase(): HandleSunoCallbackUseCase {
   return new HandleSunoCallbackUseCase(orderRepository(), songRepository());
+}
+
+export function makeGetSongsUseCase(): GetSongsUseCase {
+  return new GetSongsUseCase(songRepository());
 }

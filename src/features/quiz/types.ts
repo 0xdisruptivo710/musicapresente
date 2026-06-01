@@ -24,6 +24,17 @@ export interface LyricsDTO {
   tone: string | null;
 }
 
+/** Espelha o `SongDTO` devolvido por `GET /api/orders/:id/songs`. */
+export interface SongDTO {
+  id: string;
+  version: "v1" | "v2";
+  audioUrl: string | null;
+  title: string | null;
+  durationSeconds: number | null;
+  imageUrl: string | null;
+  locked: boolean;
+}
+
 /** Corpo aceito por `PUT /api/orders/:id/quiz`. */
 export interface QuizPayload {
   occasionCategory?: string | null;
