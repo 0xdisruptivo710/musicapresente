@@ -1,4 +1,5 @@
 import type { OrderStatus } from "@/core/domain/value-objects/order-status";
+import type { PaymentStatus } from "@/core/domain/value-objects/payment-status";
 import type { VoiceGender } from "@/core/domain/value-objects/voice-gender";
 
 /** Espelha o `OrderDTO` devolvido pela API (`shared/api/order-presenter`). */
@@ -43,4 +44,21 @@ export interface QuizPayload {
   honoreeName?: string | null;
   story?: string | null;
   voiceGender?: VoiceGender | null;
+}
+
+/** Cobrança PIX criada por `POST /api/orders/:id/payment`. */
+export interface PixChargeDTO {
+  brCode: string;
+  brCodeBase64: string;
+  amountCents: number;
+  expiresAt: string | null;
+}
+
+/** Status da cobrança devolvido por `GET /api/orders/:id/payment`. */
+export interface PaymentDTO {
+  status: PaymentStatus;
+  amountCents: number;
+  brCode: string | null;
+  brCodeBase64: string | null;
+  expiresAt: string | null;
 }

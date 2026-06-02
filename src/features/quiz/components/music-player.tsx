@@ -3,8 +3,8 @@
 import { useState } from "react";
 import type { SongDTO } from "@/features/quiz/types";
 
-/** Player de prévia com alternância V1/V2 e CTA de desbloqueio (paywall futuro). */
-export function MusicPlayer({ songs }: { songs: SongDTO[] }) {
+/** Player de prévia com alternância V1/V2. O CTA de compra vive no PaymentPanel. */
+export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: boolean }) {
   const [active, setActive] = useState(0);
   const current = songs[active] ?? songs[0];
   if (!current) return null;
@@ -45,15 +45,10 @@ export function MusicPlayer({ songs }: { songs: SongDTO[] }) {
         className="mt-4 w-full"
       />
 
-      <button
-        type="button"
-        style={{ background: "linear-gradient(90deg,#f97316,#ec4899,#a855f7)" }}
-        className="mt-4 w-full rounded-2xl py-3.5 text-sm font-semibold text-white transition hover:opacity-95"
-      >
-        Gostou? Desbloqueie a música completa 🔒
-      </button>
-      <p className="mt-2 text-center text-xs text-zinc-500">
-        Prévia de demonstração — o desbloqueio (pagamento) vem no próximo passo.
+      <p className="mt-3 text-center text-xs text-zinc-500">
+        {paid
+          ? "🔓 Música completa liberada — aproveite!"
+          : "Prévia — desbloqueie a versão completa logo abaixo."}
       </p>
     </div>
   );

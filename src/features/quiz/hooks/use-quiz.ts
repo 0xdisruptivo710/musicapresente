@@ -1,17 +1,19 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createOrder,
+  createPayment,
   generateLyrics,
   generateMusic,
   getOrder,
+  getPayment,
   getSongs,
   saveQuiz,
 } from "@/features/quiz/api/quiz-api";
 import { MAX_GENRES, type OptionItem } from "@/features/quiz/data";
-import type { LyricsDTO, QuizPayload } from "@/features/quiz/types";
+import type { LyricsDTO, PixChargeDTO, QuizPayload } from "@/features/quiz/types";
 import type { VoiceGender } from "@/core/domain/value-objects/voice-gender";
 
 export interface QuizSelections {
@@ -56,6 +58,7 @@ export function useQuiz() {
   const [lyrics, setLyrics] = useState<LyricsDTO | null>(null);
   const [orderId, setOrderId] = useState<string | null>(null);
   const [musicStarted, setMusicStarted] = useState(false);
+  const [charge, setCharge] = useState<PixChargeDTO | null>(null);
   const selectionsRef = useRef<QuizSelections>(EMPTY);
   const orderIdRef = useRef<string | null>(null);
 
@@ -95,6 +98,31 @@ export function useQuiz() {
     queryFn: () => getSongs(orderId as string),
     enabled: orderStatusQuery.data?.status === "preview_ready" && orderId !== null,
   });
+
+  const queryClient = useQueryClient();
+
+  const paymentMutation = useMutation({
+    mutationFn: (id: string) => createPayment(id),
+    onSuccess: (data) => setCharge(data),
+  });
+
+  // Polling do status da cobrança até confirmar o pagamento.
+  const paymentStatusQuery = useQuery({
+    queryKey: ["payment-status", orderId],
+    queryFn: () => getPayment(orderId as string),
+    enabled: charge !== null && orderId !== null,
+    refetchInterval: (query) =>
+      query.state.data?.payment?.status === "paid" ? false : 4000,
+  });
+
+  const paid = paymentStatusQuery.data?.payment?.status === "paid";
+
+  // Pagamento confirmado → recarrega as músicas (agora desbloqueadas).
+  useEffect(() => {
+    if (paid && orderId) {
+      void queryClient.invalidateQueries({ queryKey: ["order-songs", orderId] });
+    }
+  }, [paid, orderId, queryClient]);
 
   const update = useCallback((patch: Partial<QuizSelections>): QuizSelections => {
     const next = { ...selectionsRef.current, ...patch };
@@ -202,6 +230,16 @@ export function useQuiz() {
     }
   }, [musicMutation]);
 
+  const startPayment = useCallback(async () => {
+    const id = orderIdRef.current;
+    if (!id) return;
+    try {
+      await paymentMutation.mutateAsync(id);
+    } catch {
+      // erro disponível em paymentMutation.error
+    }
+  }, [paymentMutation]);
+
   const finish = useCallback(async () => {
     await persist(selectionsRef.current);
     setStep(6);
@@ -228,6 +266,12 @@ export function useQuiz() {
     musicStatus: orderStatusQuery.data?.status ?? null,
     musicError: (musicMutation.error ?? null) as Error | null,
     songs: songsQuery.data?.songs ?? [],
+    orderNumber: orderStatusQuery.data?.orderNumber ?? null,
+    charge,
+    paid,
+    paymentStarting: paymentMutation.isPending,
+    paymentError: (paymentMutation.error ?? null) as Error | null,
+    startPayment,
     chooseCategory,
     chooseMoment,
     toggleGenre,

@@ -16,6 +16,7 @@ import { AdjustBox, LyricsCard } from "./lyrics-review";
 import { AudioRecorder } from "./audio-recorder";
 import { MusicPlayer } from "./music-player";
 import { MusicProgress } from "./music-progress";
+import { PaymentPanel } from "./payment-panel";
 
 const STEP_LABELS: Record<number, string> = {
   1: "Ocasião",
@@ -238,7 +239,17 @@ export function QuizChat() {
         {/* Etapa 6 — música: produzindo → player V1/V2 */}
         {step === 6 ? (
           quiz.songs.length > 0 ? (
-            <MusicPlayer songs={quiz.songs} />
+            <>
+              <MusicPlayer songs={quiz.songs} paid={quiz.paid} />
+              <PaymentPanel
+                charge={quiz.charge}
+                paid={quiz.paid}
+                starting={quiz.paymentStarting}
+                error={quiz.paymentError}
+                onStart={quiz.startPayment}
+                orderNumber={quiz.orderNumber}
+              />
+            </>
           ) : quiz.musicError ? (
             <>
               <SystemBubble>

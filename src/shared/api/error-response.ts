@@ -21,14 +21,9 @@ export function toErrorResponse(error: unknown): Response {
   }
 
   console.error('[api] erro não tratado:', error);
-  // Temporário (diagnóstico): expõe a mensagem real. Voltar a mascarar depois.
+  // Mensagem genérica ao cliente — detalhes ficam só no log do servidor.
   return Response.json(
-    {
-      error: {
-        code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Erro interno do servidor.',
-      },
-    },
+    { error: { code: 'INTERNAL_ERROR', message: 'Erro interno do servidor.' } },
     { status: 500 },
   );
 }

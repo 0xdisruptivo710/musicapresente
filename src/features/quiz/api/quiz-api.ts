@@ -3,6 +3,8 @@ import type {
   CreateOrderResponse,
   LyricsDTO,
   OrderDTO,
+  PaymentDTO,
+  PixChargeDTO,
   QuizPayload,
   SongDTO,
 } from "@/features/quiz/types";
@@ -62,4 +64,17 @@ export async function transcribeAudio(blob: Blob): Promise<{ text: string }> {
     );
   }
   return data as { text: string };
+}
+
+/** Cria a cobrança PIX (R$ 39,90) do pedido e devolve o código copia-e-cola + QR. */
+export function createPayment(orderId: string): Promise<PixChargeDTO> {
+  return apiFetch<PixChargeDTO>(`/api/orders/${orderId}/payment`, {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+}
+
+/** Consulta o status da última cobrança do pedido (polling até `paid`). */
+export function getPayment(orderId: string): Promise<{ payment: PaymentDTO | null }> {
+  return apiFetch<{ payment: PaymentDTO | null }>(`/api/orders/${orderId}/payment`);
 }
