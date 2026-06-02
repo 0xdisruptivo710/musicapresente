@@ -16,6 +16,12 @@ import { HandleSunoCallbackUseCase } from '@/core/use-cases/music/handle-suno-ca
 import { SupabaseSongRepository } from '@/infra/repositories/supabase-song-repository';
 import { SunoMusicGateway } from '@/infra/gateways/suno/suno-music-gateway';
 import { GetSongsUseCase } from '@/core/use-cases/music/get-songs.use-case';
+import { CreatePixChargeUseCase } from '@/core/use-cases/payment/create-pix-charge.use-case';
+import { GetPaymentUseCase } from '@/core/use-cases/payment/get-payment.use-case';
+import { HandlePaymentWebhookUseCase } from '@/core/use-cases/payment/handle-payment-webhook.use-case';
+import { SupabasePaymentRepository } from '@/infra/repositories/supabase-payment-repository';
+import { AbacatePayGateway } from '@/infra/gateways/abacatepay/abacatepay-gateway';
+import { env } from '@/shared/config/env';
 
 /**
  * Composition root (CLAUDE.md §3): monta os Use Cases com suas dependências
@@ -47,6 +53,14 @@ function songRepository() {
 
 function musicGateway() {
   return new SunoMusicGateway();
+}
+
+function paymentRepository() {
+  return new SupabasePaymentRepository(getSupabaseAdmin());
+}
+
+function paymentGateway() {
+  return new AbacatePayGateway();
 }
 
 export function makeCreateOrderUseCase(): CreateOrderUseCase {
@@ -93,4 +107,21 @@ export function makeHandleSunoCallbackUseCase(): HandleSunoCallbackUseCase {
 
 export function makeGetSongsUseCase(): GetSongsUseCase {
   return new GetSongsUseCase(songRepository());
+}
+
+export function makeCreatePixChargeUseCase(): CreatePixChargeUseCase {
+  return new CreatePixChargeUseCase(
+    orderRepository(),
+    paymentRepository(),
+    paymentGateway(),
+    env.MUSIC_PRICE_CENTS,
+  );
+}
+
+export function makeGetPaymentUseCase(): GetPaymentUseCase {
+  return new GetPaymentUseCase(paymentRepository());
+}
+
+export function makeHandlePaymentWebhookUseCase(): HandlePaymentWebhookUseCase {
+  return new HandlePaymentWebhookUseCase(orderRepository(), paymentRepository(), songRepository());
 }

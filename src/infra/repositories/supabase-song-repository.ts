@@ -27,4 +27,15 @@ export class SupabaseSongRepository implements SongRepository {
     }
     return (data ?? []).map((row) => SongMapper.toDomain(row));
   }
+
+  async unlockByOrderId(tenantId: string, orderId: string): Promise<void> {
+    const { error } = await this.db
+      .from('songs')
+      .update({ locked: false })
+      .eq('tenant_id', tenantId)
+      .eq('order_id', orderId);
+    if (error) {
+      throw new Error(`SupabaseSongRepository.unlockByOrderId: ${error.message}`);
+    }
+  }
 }

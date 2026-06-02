@@ -36,6 +36,10 @@ const envSchema = z.object({
   ABACATEPAY_API_KEY: z.string().optional(),
   ABACATEPAY_WEBHOOK_SECRET: z.string().optional(),
   ABACATEPAY_WEBHOOK_URL: z.url().optional(),
+  ABACATEPAY_BASE_URL: z.url().default('https://api.abacatepay.com/v2'),
+
+  // Preço da música em centavos
+  MUSIC_PRICE_CENTS: z.coerce.number().int().positive().default(3990),
 
   // Fila (QStash / Inngest)
   QSTASH_TOKEN: z.string().optional(),

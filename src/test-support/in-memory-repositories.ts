@@ -27,6 +27,13 @@ export class InMemoryOrderRepository implements OrderRepository {
     return props ? Order.restore(props) : null;
   }
 
+  async findByIdGlobal(id: string): Promise<Order | null> {
+    for (const props of this.records.values()) {
+      if (props.id === id) return Order.restore(props);
+    }
+    return null;
+  }
+
   async findBySunoTaskId(sunoTaskId: string): Promise<Order | null> {
     for (const props of this.records.values()) {
       if (props.metadata['sunoTaskId'] === sunoTaskId) return Order.restore(props);

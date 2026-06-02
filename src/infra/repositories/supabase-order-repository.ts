@@ -38,6 +38,18 @@ export class SupabaseOrderRepository implements OrderRepository {
     return data ? OrderMapper.toDomain(data) : null;
   }
 
+  async findByIdGlobal(id: string): Promise<Order | null> {
+    const { data, error } = await this.db
+      .from('orders')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+    if (error) {
+      throw new Error(`SupabaseOrderRepository.findByIdGlobal: ${error.message}`);
+    }
+    return data ? OrderMapper.toDomain(data) : null;
+  }
+
   async findBySunoTaskId(sunoTaskId: string): Promise<Order | null> {
     const { data, error } = await this.db
       .from('orders')

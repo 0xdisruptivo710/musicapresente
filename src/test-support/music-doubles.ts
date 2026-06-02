@@ -18,6 +18,12 @@ export class InMemorySongRepository implements SongRepository {
       .filter((s) => s.tenantId === tenantId && s.orderId === orderId)
       .map((props) => Song.restore(props));
   }
+
+  async unlockByOrderId(tenantId: string, orderId: string): Promise<void> {
+    for (const song of this.saved) {
+      if (song.tenantId === tenantId && song.orderId === orderId) song.locked = false;
+    }
+  }
 }
 
 /** Gateway de música falso (determinístico) — não chama a Suno. */
