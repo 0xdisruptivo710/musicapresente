@@ -1,33 +1,64 @@
-import Link from "next/link";
+import { LandingNav } from "@/features/landing/components/landing-nav";
+import { Hero } from "@/features/landing/components/hero";
+import { ProofBar } from "@/features/landing/components/proof-bar";
+import { Testimonials } from "@/features/landing/components/testimonials";
+import { Comparison } from "@/features/landing/components/comparison";
+import { HowItWorks } from "@/features/landing/components/how-it-works";
+import { Occasions } from "@/features/landing/components/occasions";
+import { Faq } from "@/features/landing/components/faq";
+import { FinalCta } from "@/features/landing/components/final-cta";
+import { LandingFooter } from "@/features/landing/components/footer";
+import { WhatsappFab } from "@/features/landing/components/whatsapp-fab";
+import { Reveal } from "@/features/landing/components/reveal";
+import { SectionHeading } from "@/features/landing/components/section-heading";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-3xl flex-col items-center justify-center px-6 text-center">
-      <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-zinc-300">
-        🎵 Canção que Encanta
-      </span>
+    <>
+      <LandingNav />
+      <main>
+        <Hero />
+        <ProofBar />
 
-      <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
-        Transforme a sua história em uma{" "}
-        <span className="text-gradient">música inesquecível</span>.
-      </h1>
+        {/* Depoimentos */}
+        <section className="py-16">
+          <div className="mx-auto mb-6 max-w-4xl px-4 sm:px-6">
+            <Reveal className="flex justify-center">
+              <SectionHeading
+                center
+                tag="Momentos reais"
+                title={<>Lágrimas sinceras de <span className="text-gradient">quem você ama</span></>}
+                sub="Reações reais de quem ouviu a própria história sendo cantada."
+              />
+            </Reveal>
+          </div>
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-4 text-center text-xs text-zinc-500">← deslize para ver os recadinhos →</p>
+            <Testimonials />
+          </div>
+        </section>
 
-      <p className="mt-5 max-w-xl text-base text-zinc-400 sm:text-lg">
-        Conte o seu momento especial e a nossa IA compõe uma música personalizada —
-        feita só para quem você ama.
-      </p>
+        <Comparison />
+        <HowItWorks />
+        <Occasions />
 
-      <Link
-        href="/criar"
-        style={{ background: "linear-gradient(90deg,#f97316,#ec4899,#a855f7)" }}
-        className="mt-9 inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-sm font-semibold text-white transition hover:opacity-95"
-      >
-        Começar agora →
-      </Link>
+        {/* FAQ */}
+        <section className="px-4 py-16 sm:px-6">
+          <div className="mx-auto mb-8 max-w-2xl">
+            <Reveal>
+              <SectionHeading
+                tag="Dúvidas frequentes"
+                title={<>Ainda tem <span className="text-gradient">dúvidas?</span></>}
+              />
+            </Reveal>
+          </div>
+          <Faq />
+        </section>
 
-      <p className="mt-4 text-xs text-zinc-500">
-        Ouça uma prévia grátis antes de decidir.
-      </p>
-    </main>
+        <FinalCta />
+      </main>
+      <LandingFooter />
+      <WhatsappFab />
+    </>
   );
 }
