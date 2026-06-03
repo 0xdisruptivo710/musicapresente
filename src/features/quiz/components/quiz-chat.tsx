@@ -17,6 +17,7 @@ import { AdjustBox, LyricsCard } from "./lyrics-review";
 import { AudioRecorder } from "./audio-recorder";
 import { MusicPlayer } from "./music-player";
 import { MusicProgress } from "./music-progress";
+import { WhatsappCapture } from "./whatsapp-capture";
 
 const STEP_LABELS: Record<number, string> = {
   1: "Ocasião",
@@ -265,7 +266,20 @@ export function QuizChat() {
               </GradientButton>
             </>
           ) : (
-            <MusicProgress />
+            <>
+              <MusicProgress />
+              {quiz.whatsappSaved ? (
+                <div className="animate-rise self-stretch rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-4 text-center text-sm text-emerald-200">
+                  ✅ Pronto! Te avisamos no WhatsApp assim que a música ficar pronta.
+                </div>
+              ) : (
+                <WhatsappCapture
+                  onSubmit={quiz.submitWhatsapp}
+                  saving={quiz.whatsappSaving}
+                  error={quiz.whatsappError}
+                />
+              )}
+            </>
           )
         ) : null}
 

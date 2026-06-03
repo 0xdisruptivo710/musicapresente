@@ -78,3 +78,11 @@ export function createPayment(orderId: string): Promise<PixChargeDTO> {
 export function getPayment(orderId: string): Promise<{ payment: PaymentDTO | null }> {
   return apiFetch<{ payment: PaymentDTO | null }>(`/api/orders/${orderId}/payment`);
 }
+
+/** Salva o WhatsApp do cliente no pedido (captura antes do pagamento). */
+export function captureWhatsapp(orderId: string, whatsapp: string): Promise<{ ok: boolean }> {
+  return apiFetch<{ ok: boolean }>(`/api/orders/${orderId}/whatsapp`, {
+    method: "POST",
+    body: JSON.stringify({ whatsapp }),
+  });
+}

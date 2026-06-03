@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
+  captureWhatsapp,
   createOrder,
   createPayment,
   generateLyrics,
@@ -81,6 +82,13 @@ export function useQuiz() {
   });
   const musicMutation = useMutation({
     mutationFn: (id: string) => generateMusic(id),
+  });
+  const whatsappMutation = useMutation({
+    mutationFn: (whatsapp: string) => {
+      const id = orderIdRef.current;
+      if (!id) throw new Error("orderId ausente");
+      return captureWhatsapp(id, whatsapp);
+    },
   });
 
   // Polling do estado do pedido enquanto a música é produzida.
@@ -242,6 +250,17 @@ export function useQuiz() {
     }
   }, [paymentMutation]);
 
+  const submitWhatsapp = useCallback(
+    async (whatsapp: string) => {
+      try {
+        await whatsappMutation.mutateAsync(whatsapp);
+      } catch {
+        // erro disponível em whatsappMutation.error
+      }
+    },
+    [whatsappMutation],
+  );
+
   const finish = useCallback(async () => {
     await persist(selectionsRef.current);
     setStep(6);
@@ -270,6 +289,10 @@ export function useQuiz() {
     songs: songsQuery.data?.songs ?? [],
     orderId,
     orderNumber: orderStatusQuery.data?.orderNumber ?? null,
+    submitWhatsapp,
+    whatsappSaved: whatsappMutation.isSuccess,
+    whatsappSaving: whatsappMutation.isPending,
+    whatsappError: (whatsappMutation.error ?? null) as Error | null,
     charge,
     paid,
     paymentStarting: paymentMutation.isPending,
