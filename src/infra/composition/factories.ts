@@ -23,6 +23,8 @@ import { SupabasePaymentRepository } from '@/infra/repositories/supabase-payment
 import { AbacatePayGateway } from '@/infra/gateways/abacatepay/abacatepay-gateway';
 import { GetPackagesUseCase } from '@/core/use-cases/package/get-packages.use-case';
 import { SupabasePackageRepository } from '@/infra/repositories/supabase-package-repository';
+import { GetTributePageBySlugUseCase } from '@/core/use-cases/tribute/get-tribute-page-by-slug.use-case';
+import { SupabaseTributePageRepository } from '@/infra/repositories/supabase-tribute-page-repository';
 import { env } from '@/shared/config/env';
 
 /**
@@ -67,6 +69,10 @@ function paymentGateway() {
 
 function packageRepository() {
   return new SupabasePackageRepository(getSupabaseAdmin());
+}
+
+function tributePageRepository() {
+  return new SupabaseTributePageRepository(getSupabaseAdmin());
 }
 
 export function makeCreateOrderUseCase(): CreateOrderUseCase {
@@ -117,6 +123,10 @@ export function makeGetSongsUseCase(): GetSongsUseCase {
 
 export function makeGetPackagesUseCase(): GetPackagesUseCase {
   return new GetPackagesUseCase(packageRepository());
+}
+
+export function makeGetTributePageUseCase(): GetTributePageBySlugUseCase {
+  return new GetTributePageBySlugUseCase(tributePageRepository(), songRepository());
 }
 
 export function makeCreatePixChargeUseCase(): CreatePixChargeUseCase {

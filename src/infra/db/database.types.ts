@@ -388,6 +388,9 @@ export type Database = {
           song_id: string | null;
           slug: string;
           title: string | null;
+          honoree_name: string | null;
+          message: string | null;
+          signature: string | null;
           photos: Json;
           published: boolean;
           published_at: string | null;
@@ -401,6 +404,9 @@ export type Database = {
           song_id?: string | null;
           slug: string;
           title?: string | null;
+          honoree_name?: string | null;
+          message?: string | null;
+          signature?: string | null;
           photos?: Json;
           published?: boolean;
           published_at?: string | null;
@@ -414,6 +420,9 @@ export type Database = {
           song_id?: string | null;
           slug?: string;
           title?: string | null;
+          honoree_name?: string | null;
+          message?: string | null;
+          signature?: string | null;
           photos?: Json;
           published?: boolean;
           published_at?: string | null;

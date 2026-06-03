@@ -46,6 +46,18 @@ export function OfferView({ orderId }: { orderId: string }) {
 
       <ValueComparison fromCents={offer.packages[0]?.basePriceCents ?? 6990} />
 
+      <div className="px-4 sm:px-6">
+        <a
+          href="/vip/exemplo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mx-auto block max-w-md rounded-2xl border border-amber-400/40 bg-amber-400/[0.06] p-4 text-center transition hover:bg-amber-400/[0.1]"
+        >
+          <div className="text-sm font-bold text-amber-200">🎁 Ver Exemplo de Página VIP</div>
+          <div className="mt-0.5 text-xs text-zinc-400">Transforme sua música em um presente ✨</div>
+        </a>
+      </div>
+
       {offer.loading ? (
         <p className="py-10 text-center text-sm text-zinc-500">Carregando pacotes…</p>
       ) : (
