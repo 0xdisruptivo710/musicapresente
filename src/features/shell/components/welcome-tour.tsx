@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 const KEY = "cqe:tour-done";
 
@@ -19,18 +19,31 @@ const STEPS = [
   },
 ];
 
+// Lê o flag do localStorage sem setState-em-effect (evita mismatch de hidratação).
+function subscribe(): () => void {
+  return () => {};
+}
+function getClientSnapshot(): boolean {
+  try {
+    return window.localStorage.getItem(KEY) === "1";
+  } catch {
+    return true;
+  }
+}
+function getServerSnapshot(): boolean {
+  return true; // no servidor, trata como "já visto" (não renderiza)
+}
+
 /** Tour de boas-vindas (3 passos), só na primeira visita ao app. */
 export function WelcomeTour() {
+  const alreadyDone = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
   const [step, setStep] = useState(0);
-  const [show, setShow] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
-  useEffect(() => {
-    try {
-      if (!window.localStorage.getItem(KEY)) setShow(true);
-    } catch {
-      // localStorage indisponível — não mostra o tour
-    }
-  }, []);
+  if (alreadyDone || dismissed) return null;
+  const current = STEPS[step];
+  if (!current) return null;
+  const last = step === STEPS.length - 1;
 
   function close(): void {
     try {
@@ -38,13 +51,8 @@ export function WelcomeTour() {
     } catch {
       // ignora
     }
-    setShow(false);
+    setDismissed(true);
   }
-
-  if (!show) return null;
-  const current = STEPS[step];
-  if (!current) return null;
-  const last = step === STEPS.length - 1;
 
   return (
     <div className="fixed inset-0 z-[60]">
