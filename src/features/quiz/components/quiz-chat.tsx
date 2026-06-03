@@ -18,6 +18,7 @@ import { AudioRecorder } from "./audio-recorder";
 import { MusicPlayer } from "./music-player";
 import { MusicProgress } from "./music-progress";
 import { WhatsappCapture } from "./whatsapp-capture";
+import { StageStepper } from "./stage-stepper";
 
 const STEP_LABELS: Record<number, string> = {
   1: "Ocasião",
@@ -182,10 +183,14 @@ export function QuizChat() {
         {/* Etapa 5 — letra gerada → ajuste → voz → criar */}
         {step === 5 ? (
           quiz.lyricsGenerating && !quiz.lyrics ? (
-            <LoadingCard
-              title="Criando a sua Letra ✍️"
-              subtitle="A IA está lendo a sua história e já pegou um lenço de papel..."
-            />
+            <>
+              <SystemBubble>Anotei! 📝 Agora vou transformar a sua história em letra…</SystemBubble>
+              <StageStepper current="lyrics" />
+              <LoadingCard
+                title="Criando a sua Letra ✍️"
+                subtitle="A IA está lendo a sua história e já pegou um lenço de papel..."
+              />
+            </>
           ) : quiz.lyrics ? (
             <>
               <SystemBubble>
@@ -267,6 +272,7 @@ export function QuizChat() {
             </>
           ) : (
             <>
+              <StageStepper current="music" />
               <MusicProgress />
               {quiz.whatsappSaved ? (
                 <div className="animate-rise self-stretch rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-4 text-center text-sm text-emerald-200">
