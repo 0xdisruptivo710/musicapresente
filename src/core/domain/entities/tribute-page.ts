@@ -19,6 +19,35 @@ export interface TributePageProps {
 export class TributePage {
   private constructor(private readonly props: TributePageProps) {}
 
+  static create(input: {
+    tenantId: string;
+    orderId: string;
+    songId: string | null;
+    slug: string;
+    honoreeName: string;
+    message: string | null;
+    signature: string | null;
+    photos: string[];
+  }): TributePage {
+    const now = new Date();
+    return new TributePage({
+      id: crypto.randomUUID(),
+      tenantId: input.tenantId,
+      orderId: input.orderId,
+      songId: input.songId,
+      slug: input.slug,
+      title: null,
+      honoreeName: input.honoreeName,
+      message: input.message,
+      signature: input.signature,
+      photos: [...input.photos],
+      published: true,
+      publishedAt: now,
+      createdAt: now,
+      updatedAt: now,
+    });
+  }
+
   static restore(props: TributePageProps): TributePage {
     return new TributePage({ ...props });
   }

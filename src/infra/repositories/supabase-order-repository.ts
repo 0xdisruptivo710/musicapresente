@@ -61,4 +61,17 @@ export class SupabaseOrderRepository implements OrderRepository {
     }
     return data ? OrderMapper.toDomain(data) : null;
   }
+
+  async findByOrderNumber(tenantId: string, orderNumber: number): Promise<Order | null> {
+    const { data, error } = await this.db
+      .from('orders')
+      .select('*')
+      .eq('tenant_id', tenantId)
+      .eq('order_number', orderNumber)
+      .maybeSingle();
+    if (error) {
+      throw new Error(`SupabaseOrderRepository.findByOrderNumber: ${error.message}`);
+    }
+    return data ? OrderMapper.toDomain(data) : null;
+  }
 }

@@ -24,6 +24,7 @@ import { AbacatePayGateway } from '@/infra/gateways/abacatepay/abacatepay-gatewa
 import { GetPackagesUseCase } from '@/core/use-cases/package/get-packages.use-case';
 import { SupabasePackageRepository } from '@/infra/repositories/supabase-package-repository';
 import { GetTributePageBySlugUseCase } from '@/core/use-cases/tribute/get-tribute-page-by-slug.use-case';
+import { CreateTributePageUseCase } from '@/core/use-cases/tribute/create-tribute-page.use-case';
 import { SupabaseTributePageRepository } from '@/infra/repositories/supabase-tribute-page-repository';
 import { env } from '@/shared/config/env';
 
@@ -127,6 +128,10 @@ export function makeGetPackagesUseCase(): GetPackagesUseCase {
 
 export function makeGetTributePageUseCase(): GetTributePageBySlugUseCase {
   return new GetTributePageBySlugUseCase(tributePageRepository(), songRepository());
+}
+
+export function makeCreateTributePageUseCase(): CreateTributePageUseCase {
+  return new CreateTributePageUseCase(tributePageRepository(), orderRepository(), songRepository());
 }
 
 export function makeCreatePixChargeUseCase(): CreatePixChargeUseCase {

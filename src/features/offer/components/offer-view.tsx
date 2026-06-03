@@ -55,6 +55,7 @@ export function OfferView({ orderId }: { orderId: string }) {
         >
           <div className="text-sm font-bold text-amber-200">🎁 Ver Exemplo de Página VIP</div>
           <div className="mt-0.5 text-xs text-zinc-400">Transforme sua música em um presente ✨</div>
+          <div className="mt-1 text-[11px] text-amber-300/70">Pronta em até 24h, enviada no seu WhatsApp</div>
         </a>
       </div>
 

@@ -19,4 +19,13 @@ export class SupabaseTributePageRepository implements TributePageRepository {
     }
     return data ? TributePageMapper.toDomain(data) : null;
   }
+
+  async create(page: TributePage): Promise<void> {
+    const { error } = await this.db
+      .from('tribute_pages')
+      .insert(TributePageMapper.toInsert(page));
+    if (error) {
+      throw new Error(`SupabaseTributePageRepository.create: ${error.message}`);
+    }
+  }
 }

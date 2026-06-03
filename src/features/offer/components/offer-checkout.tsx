@@ -87,12 +87,16 @@ export function OfferCheckout({
                 </p>
               </div>
             ) : null}
+            <p className="mt-3 text-[11px] text-zinc-500">
+              Comprou um pacote com Página VIP? Ela é montada com suas fotos e enviada no seu
+              WhatsApp em até 24h.
+            </p>
             {waUrl ? (
               <a
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 block w-full rounded-2xl bg-emerald-500 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-400"
+                className="mt-3 block w-full rounded-2xl bg-emerald-500 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-400"
               >
                 📲 Receber o link no WhatsApp
               </a>

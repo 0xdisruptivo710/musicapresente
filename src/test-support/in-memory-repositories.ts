@@ -41,6 +41,15 @@ export class InMemoryOrderRepository implements OrderRepository {
     return null;
   }
 
+  async findByOrderNumber(tenantId: string, orderNumber: number): Promise<Order | null> {
+    for (const props of this.records.values()) {
+      if (props.tenantId === tenantId && props.orderNumber === orderNumber) {
+        return Order.restore(props);
+      }
+    }
+    return null;
+  }
+
   get size(): number {
     return this.records.size;
   }

@@ -12,4 +12,6 @@ export interface OrderRepository {
   findByIdGlobal(id: string): Promise<Order | null>;
   /** Busca global pelo taskId da Suno (usado pelo webhook, que não traz tenant). */
   findBySunoTaskId(sunoTaskId: string): Promise<Order | null>;
+  /** Busca pelo número do pedido (o código que o cliente informa ao admin). */
+  findByOrderNumber(tenantId: string, orderNumber: number): Promise<Order | null>;
 }

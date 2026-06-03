@@ -1,8 +1,9 @@
 import { TributePage } from '@/core/domain/entities/tribute-page';
-import type { Database } from '@/infra/db/database.types';
+import type { Database, Json } from '@/infra/db/database.types';
 import { toStringArray } from '@/infra/db/json';
 
 type TributePageRow = Database['cancao']['Tables']['tribute_pages']['Row'];
+type TributePageInsert = Database['cancao']['Tables']['tribute_pages']['Insert'];
 
 /** Converte a linha de `cancao.tribute_pages` na entidade TributePage. */
 export const TributePageMapper = {
@@ -23,5 +24,23 @@ export const TributePageMapper = {
       createdAt: new Date(row.created_at),
       updatedAt: new Date(row.updated_at),
     });
+  },
+
+  toInsert(page: TributePage): TributePageInsert {
+    const p = page.toPrimitives();
+    return {
+      id: p.id,
+      tenant_id: p.tenantId,
+      order_id: p.orderId,
+      song_id: p.songId,
+      slug: p.slug,
+      title: p.title,
+      honoree_name: p.honoreeName,
+      message: p.message,
+      signature: p.signature,
+      photos: p.photos as unknown as Json,
+      published: p.published,
+      published_at: p.publishedAt ? p.publishedAt.toISOString() : null,
+    };
   },
 };
