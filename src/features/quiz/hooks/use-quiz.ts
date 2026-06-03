@@ -14,6 +14,7 @@ import {
 } from "@/features/quiz/api/quiz-api";
 import { MAX_GENRES, type OptionItem } from "@/features/quiz/data";
 import type { LyricsDTO, PixChargeDTO, QuizPayload } from "@/features/quiz/types";
+import { addMySong } from "@/features/shell/my-songs";
 import type { VoiceGender } from "@/core/domain/value-objects/voice-gender";
 
 export interface QuizSelections {
@@ -137,6 +138,7 @@ export function useQuiz() {
         const { orderId: id } = await createMutation.mutateAsync();
         orderIdRef.current = id;
         setOrderId(id);
+        addMySong(id);
       }
       await saveMutation.mutateAsync(toPayload(next));
     },

@@ -38,11 +38,8 @@ export function QuizChat() {
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col px-4 pb-4 pt-7">
-      <header className="mb-6 flex items-center justify-between">
-        <span className="text-sm font-semibold tracking-tight text-white">
-          Canção <span className="text-gradient">que Encanta</span>
-        </span>
-        {step > 1 && step <= TOTAL_STEPS ? (
+      {step > 1 && step <= TOTAL_STEPS ? (
+        <div className="mb-4">
           <button
             type="button"
             onClick={quiz.goBack}
@@ -50,8 +47,8 @@ export function QuizChat() {
           >
             ← Voltar
           </button>
-        ) : null}
-      </header>
+        </div>
+      ) : null}
 
       <div className="flex flex-1 flex-col gap-4">
         <SystemBubble>
