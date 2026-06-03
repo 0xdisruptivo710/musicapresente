@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createPayment,
   getOfferSongs,
+  getOrder,
   getPackages,
   getPaymentStatus,
 } from "../api/offer-api";
@@ -19,6 +20,11 @@ export function useOffer(orderId: string) {
   const songsQuery = useQuery({
     queryKey: ["order-songs", orderId],
     queryFn: () => getOfferSongs(orderId),
+  });
+
+  const orderQuery = useQuery({
+    queryKey: ["order", orderId],
+    queryFn: () => getOrder(orderId),
   });
 
   const packages = useMemo(() => packagesQuery.data?.packages ?? [], [packagesQuery.data]);
@@ -83,6 +89,7 @@ export function useOffer(orderId: string) {
     setExtraPhotos,
     totalCents,
     songs: songsQuery.data?.songs ?? [],
+    orderNumber: orderQuery.data?.orderNumber ?? null,
     charge,
     paid,
     startPayment: () => paymentMutation.mutate(),

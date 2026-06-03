@@ -1,9 +1,13 @@
 import { apiFetch } from "@/shared/http/client";
 import type { PackageDTO } from "../types";
-import type { PaymentDTO, PixChargeDTO, SongDTO } from "@/features/quiz/types";
+import type { OrderDTO, PaymentDTO, PixChargeDTO, SongDTO } from "@/features/quiz/types";
 
 export function getPackages(): Promise<{ packages: PackageDTO[] }> {
   return apiFetch<{ packages: PackageDTO[] }>(`/api/packages`);
+}
+
+export function getOrder(orderId: string): Promise<OrderDTO> {
+  return apiFetch<OrderDTO>(`/api/orders/${orderId}`);
 }
 
 export function getOfferSongs(orderId: string): Promise<{ songs: SongDTO[] }> {

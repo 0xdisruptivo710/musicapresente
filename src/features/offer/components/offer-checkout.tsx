@@ -17,6 +17,7 @@ export function OfferCheckout({
   paid,
   starting,
   error,
+  orderNumber,
 }: {
   open: boolean;
   onClose: () => void;
@@ -24,9 +25,12 @@ export function OfferCheckout({
   paid: boolean;
   starting: boolean;
   error: Error | null;
+  orderNumber: number | null;
 }) {
   const [copied, setCopied] = useState(false);
   if (!open) return null;
+
+  const orderCode = orderNumber != null ? String(orderNumber).padStart(6, "0") : null;
 
   async function copyPix(): Promise<void> {
     if (!charge?.brCode) return;
@@ -40,7 +44,9 @@ export function OfferCheckout({
   }
 
   const waMsg = encodeURIComponent(
-    "Olá! Acabei de comprar minha música personalizada. Quero receber o link completo. 🎵",
+    `Olá! Acabei de comprar minha música personalizada${
+      orderCode ? ` (pedido ${orderCode})` : ""
+    }. Quero receber o link completo. 🎵`,
   );
   const waUrl = WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${waMsg}` : null;
 
@@ -65,8 +71,22 @@ export function OfferCheckout({
         {paid ? (
           <div className="mt-4 text-center">
             <div className="text-4xl">✅</div>
-            <div className="mt-2 text-lg font-semibold text-white">Sua música está liberada!</div>
-            <p className="mt-1 text-sm text-zinc-300">Feche esta janela para ouvir a versão completa.</p>
+            <div className="mt-2 text-lg font-semibold text-white">Pagamento feito com sucesso!</div>
+            <p className="mt-1 text-sm text-zinc-300">
+              Sua música está liberada. Feche para ouvir a versão completa.
+            </p>
+            {orderCode ? (
+              <div className="mt-4 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3">
+                <div className="text-[10px] uppercase tracking-widest text-violet-300">
+                  Código do seu pedido
+                </div>
+                <div className="text-2xl font-bold tracking-[0.3em] text-white">{orderCode}</div>
+                <p className="mt-1 text-[11px] text-zinc-400">
+                  Guarde e envie este código no nosso WhatsApp para receber sua música em alta
+                  qualidade.
+                </p>
+              </div>
+            ) : null}
             {waUrl ? (
               <a
                 href={waUrl}

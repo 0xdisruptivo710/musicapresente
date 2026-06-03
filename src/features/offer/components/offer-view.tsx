@@ -70,6 +70,7 @@ export function OfferView({ orderId }: { orderId: string }) {
         paid={offer.paid}
         starting={offer.paymentStarting}
         error={offer.paymentError}
+        orderNumber={offer.orderNumber}
       />
     </main>
   );
