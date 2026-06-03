@@ -5,6 +5,8 @@ import { toErrorResponse } from '@/shared/api/error-response';
 import { toPaymentDTO } from '@/shared/api/payment-presenter';
 
 const bodySchema = z.object({
+  packageId: z.string().optional(),
+  addonCodes: z.array(z.string()).optional(),
   customer: z
     .object({
       name: z.string(),
@@ -15,7 +17,7 @@ const bodySchema = z.object({
     .optional(),
 });
 
-/** POST /api/orders/:orderId/payment — cria a cobrança PIX (R$ 39,90). */
+/** POST /api/orders/:orderId/payment — cria a cobrança PIX do pacote escolhido. */
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ orderId: string }> },
@@ -23,10 +25,12 @@ export async function POST(
   try {
     const { orderId } = await params;
     const raw: unknown = await request.json().catch(() => ({}));
-    const { customer } = bodySchema.parse(raw ?? {});
+    const { packageId, addonCodes, customer } = bodySchema.parse(raw ?? {});
     const result = await makeCreatePixChargeUseCase().execute({
       tenantId: resolveTenantId(),
       orderId,
+      packageId,
+      addonCodes,
       customer,
     });
     return Response.json(result, { status: 201 });

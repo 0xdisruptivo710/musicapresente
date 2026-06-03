@@ -2,6 +2,7 @@ import { Money } from '@/core/domain/value-objects/money';
 import { Payment } from '@/core/domain/entities/payment';
 import type { OrderRepository } from '@/core/ports/repositories/order-repository';
 import type { PaymentRepository } from '@/core/ports/repositories/payment-repository';
+import type { PackageRepository } from '@/core/ports/repositories/package-repository';
 import type { PaymentGateway, PixCustomer } from '@/core/ports/gateways/payment-gateway';
 import { OrderNotFoundError } from '@/core/domain/errors/order-errors';
 import { CannotCreateChargeError } from '@/core/domain/errors/payment-errors';
@@ -9,6 +10,8 @@ import { CannotCreateChargeError } from '@/core/domain/errors/payment-errors';
 export interface CreatePixChargeInput {
   tenantId: string;
   orderId: string;
+  packageId?: string;
+  addonCodes?: string[];
   customer?: PixCustomer;
 }
 
@@ -27,8 +30,9 @@ export class CreatePixChargeUseCase {
   constructor(
     private readonly orders: OrderRepository,
     private readonly payments: PaymentRepository,
+    private readonly packages: PackageRepository,
     private readonly gateway: PaymentGateway,
-    private readonly priceCents: number,
+    private readonly fallbackPriceCents: number,
   ) {}
 
   async execute(input: CreatePixChargeInput): Promise<CreatePixChargeOutput> {
@@ -42,8 +46,20 @@ export class CreatePixChargeUseCase {
       );
     }
 
+    // Preço a partir do pacote escolhido; sem pacote, usa o valor padrão.
+    let priceCents = this.fallbackPriceCents;
+    if (input.packageId) {
+      const pkg = await this.packages.findById(input.tenantId, input.packageId);
+      if (!pkg) {
+        throw new CannotCreateChargeError('Pacote inválido para este pedido.');
+      }
+      const addonCodes = input.addonCodes ?? [];
+      priceCents = pkg.priceWithAddons(addonCodes);
+      order.choosePackage(input.packageId, addonCodes);
+    }
+
     const charge = await this.gateway.createPixCharge({
-      amountCents: this.priceCents,
+      amountCents: priceCents,
       description: `Cancao que Encanta - musica personalizada (pedido #${order.orderNumber ?? ''})`,
       expiresInSeconds: 3600,
       externalId: input.orderId,
@@ -53,7 +69,7 @@ export class CreatePixChargeUseCase {
     const payment = Payment.create({
       tenantId: input.tenantId,
       orderId: input.orderId,
-      amountCents: this.priceCents,
+      amountCents: priceCents,
       abacatepayId: charge.chargeId,
       brCode: charge.brCode,
       brCodeBase64: charge.brCodeBase64,
@@ -63,14 +79,14 @@ export class CreatePixChargeUseCase {
     await this.payments.create(payment);
 
     if (order.status === 'preview_ready') {
-      order.awaitPayment(Money.fromCents(this.priceCents));
-      await this.orders.update(order);
+      order.awaitPayment(Money.fromCents(priceCents));
     }
+    await this.orders.update(order);
 
     return {
       brCode: charge.brCode,
       brCodeBase64: charge.brCodeBase64,
-      amountCents: this.priceCents,
+      amountCents: priceCents,
       expiresAt: charge.expiresAt ? charge.expiresAt.toISOString() : null,
     };
   }

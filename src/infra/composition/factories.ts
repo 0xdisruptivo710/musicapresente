@@ -21,6 +21,8 @@ import { GetPaymentUseCase } from '@/core/use-cases/payment/get-payment.use-case
 import { HandlePaymentWebhookUseCase } from '@/core/use-cases/payment/handle-payment-webhook.use-case';
 import { SupabasePaymentRepository } from '@/infra/repositories/supabase-payment-repository';
 import { AbacatePayGateway } from '@/infra/gateways/abacatepay/abacatepay-gateway';
+import { GetPackagesUseCase } from '@/core/use-cases/package/get-packages.use-case';
+import { SupabasePackageRepository } from '@/infra/repositories/supabase-package-repository';
 import { env } from '@/shared/config/env';
 
 /**
@@ -61,6 +63,10 @@ function paymentRepository() {
 
 function paymentGateway() {
   return new AbacatePayGateway();
+}
+
+function packageRepository() {
+  return new SupabasePackageRepository(getSupabaseAdmin());
 }
 
 export function makeCreateOrderUseCase(): CreateOrderUseCase {
@@ -109,10 +115,15 @@ export function makeGetSongsUseCase(): GetSongsUseCase {
   return new GetSongsUseCase(songRepository());
 }
 
+export function makeGetPackagesUseCase(): GetPackagesUseCase {
+  return new GetPackagesUseCase(packageRepository());
+}
+
 export function makeCreatePixChargeUseCase(): CreatePixChargeUseCase {
   return new CreatePixChargeUseCase(
     orderRepository(),
     paymentRepository(),
+    packageRepository(),
     paymentGateway(),
     env.MUSIC_PRICE_CENTS,
   );
