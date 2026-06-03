@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { TOTAL_STEPS, useQuiz } from "@/features/quiz/hooks/use-quiz";
 import { CATEGORIES, GENRES, MAX_GENRES, VOICES } from "@/features/quiz/data";
 import type { VoiceGender } from "@/core/domain/value-objects/voice-gender";
@@ -16,7 +17,6 @@ import { AdjustBox, LyricsCard } from "./lyrics-review";
 import { AudioRecorder } from "./audio-recorder";
 import { MusicPlayer } from "./music-player";
 import { MusicProgress } from "./music-progress";
-import { PaymentPanel } from "./payment-panel";
 
 const STEP_LABELS: Record<number, string> = {
   1: "Ocasião",
@@ -241,14 +241,15 @@ export function QuizChat() {
           quiz.songs.length > 0 ? (
             <>
               <MusicPlayer songs={quiz.songs} paid={quiz.paid} />
-              <PaymentPanel
-                charge={quiz.charge}
-                paid={quiz.paid}
-                starting={quiz.paymentStarting}
-                error={quiz.paymentError}
-                onStart={quiz.startPayment}
-                orderNumber={quiz.orderNumber}
-              />
+              {quiz.orderId ? (
+                <Link
+                  href={`/oferta/${quiz.orderId}`}
+                  style={{ background: "linear-gradient(90deg,#f97316,#ec4899,#a855f7)" }}
+                  className="block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white transition hover:opacity-95"
+                >
+                  🔓 Gostou? Desbloquear minha música
+                </Link>
+              ) : null}
             </>
           ) : quiz.musicError ? (
             <>
