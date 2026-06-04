@@ -21,7 +21,7 @@ export class InMemoryLyricsRepository implements LyricsRepository {
   }
 }
 
-/** Gateway de letra falso (determinístico) para testes — não chama a OpenAI. */
+/** Gateway de letra falso (determinístico) para testes, não chama a OpenAI. */
 export class FakeLyricsGateway implements LyricsGateway {
   readonly calls: LyricsGenerationParams[] = [];
 

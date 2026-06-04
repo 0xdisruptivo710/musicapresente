@@ -3,7 +3,7 @@ import { resolveTenantId } from '@/shared/tenant';
 import { toErrorResponse } from '@/shared/api/error-response';
 import { toOrderDTO } from '@/shared/api/order-presenter';
 
-/** GET /api/orders/:orderId — estado atual do pedido (escopado por tenant). */
+/** GET /api/orders/:orderId, estado atual do pedido (escopado por tenant). */
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ orderId: string }> },

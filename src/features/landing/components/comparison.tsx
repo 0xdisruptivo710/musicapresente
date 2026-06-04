@@ -10,7 +10,7 @@ const BORING = [
 ];
 
 const PREMIUM = [
-  "🎯 Personalização: total — nome, memórias e história real",
+  "🎯 Personalização: total, nome, memórias e história real",
   "⚡ Entrega: pronta em 5 minutos",
   "♾️ Durabilidade: memória eterna em alta qualidade",
   "💜 Impacto emocional: inesquecível ★★★★★",

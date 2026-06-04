@@ -31,7 +31,7 @@ export class InMemoryPaymentRepository implements PaymentRepository {
   }
 }
 
-/** Gateway de pagamento falso (determinístico) — não chama a AbacatePay. */
+/** Gateway de pagamento falso (determinístico), não chama a AbacatePay. */
 export class FakePaymentGateway implements PaymentGateway {
   readonly calls: CreatePixChargeParams[] = [];
   chargeId = 'charge-fake-1';

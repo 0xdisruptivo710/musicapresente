@@ -3,7 +3,7 @@ import { resolveTenantId } from '@/shared/tenant';
 import { toErrorResponse } from '@/shared/api/error-response';
 import { toPackageDTO } from '@/shared/api/package-presenter';
 
-/** GET /api/packages — pacotes ativos para a tela de oferta. */
+/** GET /api/packages, pacotes ativos para a tela de oferta. */
 export async function GET(): Promise<Response> {
   try {
     const packages = await makeGetPackagesUseCase().execute({ tenantId: resolveTenantId() });

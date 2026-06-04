@@ -3,7 +3,7 @@ import { resolveTenantId } from '@/shared/tenant';
 import { toErrorResponse } from '@/shared/api/error-response';
 
 /**
- * POST /api/orders/:orderId/music — dispara a geração da música na Suno
+ * POST /api/orders/:orderId/music, dispara a geração da música na Suno
  * (assíncrona). Devolve o taskId; o resultado chega pelo webhook.
  */
 export async function POST(

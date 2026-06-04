@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-/** Botão de chamada para ação principal — leva para o quiz (/criar) com brilho no hover. */
+/** Botão de chamada para ação principal, leva para o quiz (/criar) com brilho no hover. */
 export function CtaButton({
   children,
   className = "",

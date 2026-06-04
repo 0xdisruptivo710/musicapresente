@@ -13,7 +13,7 @@ let cached: CancaoClient | undefined;
  * fixado no schema dedicado `cancao` (isolado do `public` compartilhado).
  *
  * Toda a persistência deve passar por Repositories (CLAUDE.md §3). NUNCA usar
- * este cliente em componentes/código de client — ele carrega a service role key.
+ * este cliente em componentes/código de client, ele carrega a service role key.
  */
 export function getSupabaseAdmin(): CancaoClient {
   if (cached) return cached;

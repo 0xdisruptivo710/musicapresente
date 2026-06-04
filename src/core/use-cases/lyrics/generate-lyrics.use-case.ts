@@ -18,7 +18,7 @@ export interface GenerateLyricsInput {
  *
  * Síncrono: o LLM responde em segundos. Na 1ª geração o pedido avança
  * QUIZ_COMPLETED → LYRICS_READY (passando por LYRICS_GENERATING em memória, sem
- * persistir o estado intermediário). Falha do gateway NÃO altera o pedido —
+ * persistir o estado intermediário). Falha do gateway NÃO altera o pedido:
  * o usuário pode tentar de novo.
  */
 export class GenerateLyricsUseCase {

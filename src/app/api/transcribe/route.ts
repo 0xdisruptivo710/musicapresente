@@ -2,7 +2,7 @@ import { makeTranscribeAudioUseCase } from '@/infra/composition/factories';
 import { toErrorResponse } from '@/shared/api/error-response';
 
 /**
- * POST /api/transcribe — recebe um áudio (multipart, campo `audio`) e devolve
+ * POST /api/transcribe, recebe um áudio (multipart, campo `audio`) e devolve
  * a transcrição em texto, para preencher a história do quiz.
  */
 export async function POST(request: Request): Promise<Response> {

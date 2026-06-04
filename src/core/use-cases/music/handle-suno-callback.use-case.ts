@@ -26,7 +26,7 @@ export class HandleSunoCallbackUseCase {
 
   async execute(input: HandleSunoCallbackInput): Promise<void> {
     const order = await this.orders.findBySunoTaskId(input.taskId);
-    if (!order) return; // taskId desconhecido — ignora
+    if (!order) return; // taskId desconhecido, ignora
     if (order.status !== 'music_generating') return; // já processado (idempotência)
 
     if (!input.succeeded || input.tracks.length === 0) {

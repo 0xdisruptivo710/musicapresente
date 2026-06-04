@@ -1,7 +1,7 @@
 import { InvalidMoneyError } from '@/core/domain/errors/value-object-errors';
 
 /**
- * Valor monetário em CENTAVOS (inteiro) — CLAUDE.md §5.1. Nunca usar float.
+ * Valor monetário em CENTAVOS (inteiro), CLAUDE.md §5.1. Nunca usar float.
  */
 export class Money {
   private constructor(public readonly cents: number) {}

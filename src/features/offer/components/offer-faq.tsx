@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     q: "Por quanto tempo o link da Página VIP fica ativo?",
-    a: "Acesso vitalício — o link continua no ar para você reviver a homenagem sempre que quiser.",
+    a: "Acesso vitalício, o link continua no ar para você reviver a homenagem sempre que quiser.",
   },
 ];
 

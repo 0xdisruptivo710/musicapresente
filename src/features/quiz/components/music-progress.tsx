@@ -10,7 +10,7 @@ const MESSAGES = [
   "Gravando os vocais com todo o carinho. 🎶",
   "Caprichando no refrão pra grudar na cabeça. 🎵",
   "Dando os retoques finais na mixagem... quase lá! ✨",
-  "Coisa boa leva tempo — a sua canção está quase pronta. ⏳",
+  "Coisa boa leva tempo, a sua canção está quase pronta. ⏳",
 ];
 
 const TOTAL_MS = 5 * 60 * 1000; // referência de 5 min
@@ -64,7 +64,7 @@ export function MusicProgress() {
       </div>
 
       <p className="mt-5 text-center text-xs text-zinc-500">
-        Pode deixar esta tela aberta — assim que ficar pronta, a música aparece aqui
+        Pode deixar esta tela aberta, assim que ficar pronta, a música aparece aqui
         sozinha. 💜
       </p>
     </div>

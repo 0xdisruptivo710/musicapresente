@@ -12,7 +12,7 @@ const bodySchema = z.object({
   photos: z.array(z.string()).default([]),
 });
 
-/** POST /api/admin/tribute — cria e publica a Página VIP de um pedido (pelo código). */
+/** POST /api/admin/tribute, cria e publica a Página VIP de um pedido (pelo código). */
 export async function POST(request: Request): Promise<Response> {
   if (!isAdmin(request)) return unauthorized();
   try {

@@ -3,7 +3,7 @@ import { resolveTenantId } from '@/shared/tenant';
 import { toErrorResponse } from '@/shared/api/error-response';
 import { toSongDTO } from '@/shared/api/song-presenter';
 
-/** GET /api/orders/:orderId/songs — músicas (V1/V2) do pedido, para o player. */
+/** GET /api/orders/:orderId/songs, músicas (V1/V2) do pedido, para o player. */
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ orderId: string }> },

@@ -1,7 +1,7 @@
 import { makeHandlePaymentWebhookUseCase } from '@/infra/composition/factories';
 
 /**
- * POST /api/webhooks/abacatepay — confirma pagamento. Valida o `?webhookSecret=`
+ * POST /api/webhooks/abacatepay, confirma pagamento. Valida o `?webhookSecret=`
  * (quando ABACATEPAY_WEBHOOK_SECRET está configurado). O use case é idempotente.
  * Responde sempre 200 para o provedor não re-tentar em loop. CLAUDE.md §9.
  */

@@ -4,7 +4,7 @@ import { toErrorResponse } from '@/shared/api/error-response';
 
 const BUCKET = 'vip-photos';
 
-/** POST /api/admin/upload — sobe uma foto da Página VIP e devolve a URL pública. */
+/** POST /api/admin/upload, sobe uma foto da Página VIP e devolve a URL pública. */
 export async function POST(request: Request): Promise<Response> {
   if (!isAdmin(request)) return unauthorized();
   try {

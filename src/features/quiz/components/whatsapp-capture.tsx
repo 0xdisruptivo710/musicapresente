@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-/** Card "Ativar prévias no Zap" — captura o WhatsApp enquanto a música é gerada. */
+/** Card "Ativar prévias no Zap", captura o WhatsApp enquanto a música é gerada. */
 export function WhatsappCapture({
   onSubmit,
   saving,

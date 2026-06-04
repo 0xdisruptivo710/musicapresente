@@ -43,11 +43,11 @@ export function PaymentPanel({
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2500);
     } catch {
-      // clipboard indisponível — usuário seleciona e copia manualmente
+      // clipboard indisponível, usuário seleciona e copia manualmente
     }
   }
 
-  // 1) Pagamento confirmado — sucesso + WhatsApp
+  // 1) Pagamento confirmado, sucesso + WhatsApp
   if (paid) {
     const message = encodeURIComponent(
       `Olá! Acabei de comprar minha música personalizada${
@@ -80,7 +80,7 @@ export function PaymentPanel({
     );
   }
 
-  // 2) Cobrança criada — QR + copia-e-cola + aguardando confirmação
+  // 2) Cobrança criada, QR + copia-e-cola + aguardando confirmação
   if (charge) {
     return (
       <div className="animate-rise self-stretch rounded-2xl border border-amber-500/30 bg-white/[0.04] p-5">
@@ -123,7 +123,7 @@ export function PaymentPanel({
     );
   }
 
-  // 3) Oferta — CTA inicial
+  // 3) Oferta, CTA inicial
   return (
     <div className="animate-rise self-stretch rounded-2xl border border-amber-500/30 bg-gradient-to-b from-amber-500/[0.08] to-transparent p-5 text-center">
       <div className="text-[11px] font-semibold uppercase tracking-widest text-amber-300">

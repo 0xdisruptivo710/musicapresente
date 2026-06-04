@@ -19,7 +19,7 @@ export function FinalCta() {
         </h2>
         <p className="mt-3 text-zinc-400">Pronta em 5 minutos. Ouça antes de pagar.</p>
         <div className="mt-7 flex justify-center">
-          <CtaButton size="lg">Criar e Ouvir Grátis — Sem Cadastro</CtaButton>
+          <CtaButton size="lg">Criar e Ouvir Grátis, Sem Cadastro</CtaButton>
         </div>
         <div className="mt-4 text-sm text-emerald-300">✓ Só paga se amar. Sem risco nenhum.</div>
       </Reveal>

@@ -4,7 +4,7 @@ import { z } from 'zod';
 /**
  * Validação centralizada das variáveis de ambiente do SERVIDOR (CLAUDE.md §13).
  *
- * Importar SOMENTE em código de servidor — o import `server-only` garante que
+ * Importar SOMENTE em código de servidor, o import `server-only` garante que
  * estas chaves nunca vão para o bundle do client (CLAUDE.md §11).
  */
 const envSchema = z.object({
@@ -51,7 +51,7 @@ const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 
 function loadEnv(): Env {
-  // Strings vazias (ex.: `VAR=` no .env) contam como ausentes — assim uma URL
+  // Strings vazias (ex.: `VAR=` no .env) contam como ausentes, assim uma URL
   // opcional vazia não falha em `.url()`.
   const source: Record<string, string> = {};
   for (const [key, value] of Object.entries(process.env)) {
@@ -76,7 +76,7 @@ function getEnv(): Env {
 
 /**
  * Env validado de forma LAZY: a validação roda no 1º acesso a `env.*` (runtime),
- * não no import. Assim o `next build` — que importa as rotas sem executá-las —
+ * não no import. Assim o `next build`, que importa as rotas sem executá-las:
  * não quebra por variáveis ausentes.
  */
 export const env: Env = new Proxy({} as Env, {

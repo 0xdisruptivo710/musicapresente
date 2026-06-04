@@ -21,7 +21,7 @@ export function toErrorResponse(error: unknown): Response {
   }
 
   console.error('[api] erro não tratado:', error);
-  // Mensagem genérica ao cliente — detalhes ficam só no log do servidor.
+  // Mensagem genérica ao cliente, detalhes ficam só no log do servidor.
   return Response.json(
     { error: { code: 'INTERNAL_ERROR', message: 'Erro interno do servidor.' } },
     { status: 500 },

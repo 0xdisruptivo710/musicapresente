@@ -5,7 +5,7 @@ import type { QuizAnswersRepository } from '@/core/ports/repositories/quiz-answe
 
 /**
  * Test doubles em memória para os repositories. Guardam snapshots (toPrimitives)
- * para simular persistência real — mudanças só "persistem" via create/update/upsert.
+ * para simular persistência real, mudanças só "persistem" via create/update/upsert.
  */
 export class InMemoryOrderRepository implements OrderRepository {
   private readonly records = new Map<string, OrderProps>();

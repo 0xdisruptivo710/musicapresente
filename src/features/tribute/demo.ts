@@ -1,6 +1,6 @@
 import type { TributePageDTO } from "@/shared/api/tribute-presenter";
 
-/** Página VIP de exemplo (slug "exemplo") — usada para vender o upsell. */
+/** Página VIP de exemplo (slug "exemplo"), usada para vender o upsell. */
 export const DEMO_TRIBUTE: TributePageDTO = {
   slug: "exemplo",
   title: null,

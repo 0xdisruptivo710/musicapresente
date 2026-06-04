@@ -13,7 +13,7 @@ const quizSchema = z.object({
   voiceGender: z.enum(['m', 'f']).nullish(),
 });
 
-/** PUT /api/orders/:orderId/quiz — salva as respostas do quiz (upsert) e
+/** PUT /api/orders/:orderId/quiz, salva as respostas do quiz (upsert) e
  *  transiciona DRAFT → QUIZ_COMPLETED na primeira vez. Devolve o pedido. */
 export async function PUT(
   request: Request,

@@ -35,7 +35,7 @@ export class HandlePaymentWebhookUseCase {
       }
     }
 
-    if (!order || !payment) return; // não mapeado — ignora
+    if (!order || !payment) return; // não mapeado, ignora
 
     if (input.refunded) {
       if (payment.status === 'refunded') return; // idempotência

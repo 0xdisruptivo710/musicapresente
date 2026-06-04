@@ -22,7 +22,7 @@ export function Hero() {
             </h1>
             <p className="mt-5 max-w-lg text-base text-zinc-300 sm:text-lg">
               <strong className="text-white">Sem cantar, sem pagar entrada.</strong> Ouça a prévia
-              completa de graça — a música fica pronta na hora, com a história e os detalhes que só
+              completa de graça, a música fica pronta na hora, com a história e os detalhes que só
               você sabe.
             </p>
             <div className="mt-7">

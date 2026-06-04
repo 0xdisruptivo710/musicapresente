@@ -79,7 +79,7 @@ export function QuizChat() {
           <ChoiceCard emoji="✍️" label={s.honoreeName} sublabel="Homenageado(a)" />
         ) : null}
 
-        {/* Etapa 1 — categoria */}
+        {/* Etapa 1, categoria */}
         {step === 1 ? (
           <>
             <SystemBubble>
@@ -89,7 +89,7 @@ export function QuizChat() {
           </>
         ) : null}
 
-        {/* Etapa 2 — momento */}
+        {/* Etapa 2, momento */}
         {step === 2 ? (
           <>
             <SystemBubble>
@@ -100,7 +100,7 @@ export function QuizChat() {
           </>
         ) : null}
 
-        {/* Etapa 3 — gêneros (fusão) */}
+        {/* Etapa 3, gêneros (fusão) */}
         {step === 3 ? (
           <>
             <SystemBubble>
@@ -120,7 +120,7 @@ export function QuizChat() {
             />
             {s.genres.length >= MAX_GENRES ? (
               <p className="self-start text-xs text-zinc-500">
-                Máximo de {MAX_GENRES} ritmos — desmarque um para trocar.
+                Máximo de {MAX_GENRES} ritmos, desmarque um para trocar.
               </p>
             ) : null}
             <GradientButton
@@ -133,11 +133,11 @@ export function QuizChat() {
           </>
         ) : null}
 
-        {/* Etapa 4 — história + nome */}
+        {/* Etapa 4, história + nome */}
         {step === 4 ? (
           <>
             <SystemBubble>
-              Conte a história 💬 — para quem é a música e o que a torna especial?
+              Conte a história 💬, para quem é a música e o que a torna especial?
             </SystemBubble>
             <form
               className="flex flex-col gap-3 self-stretch"
@@ -180,7 +180,7 @@ export function QuizChat() {
           </>
         ) : null}
 
-        {/* Etapa 5 — letra gerada → ajuste → voz → criar */}
+        {/* Etapa 5, letra gerada → ajuste → voz → criar */}
         {step === 5 ? (
           quiz.lyricsGenerating && !quiz.lyrics ? (
             <>
@@ -239,7 +239,7 @@ export function QuizChat() {
           )
         ) : null}
 
-        {/* Etapa 6 — música: produzindo → player V1/V2 */}
+        {/* Etapa 6, música: produzindo → player V1/V2 */}
         {step === 6 ? (
           quiz.songs.length > 0 ? (
             <>

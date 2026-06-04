@@ -5,7 +5,7 @@ import { toErrorResponse } from '@/shared/api/error-response';
 
 const bodySchema = z.object({ customerId: z.uuid().nullish() });
 
-/** POST /api/orders — abre uma nova sessão do funil (Order em DRAFT). */
+/** POST /api/orders, abre uma nova sessão do funil (Order em DRAFT). */
 export async function POST(request: Request): Promise<Response> {
   try {
     const raw: unknown = await request.json().catch(() => ({}));

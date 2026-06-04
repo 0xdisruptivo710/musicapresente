@@ -26,7 +26,7 @@ export class InMemorySongRepository implements SongRepository {
   }
 }
 
-/** Gateway de música falso (determinístico) — não chama a Suno. */
+/** Gateway de música falso (determinístico), não chama a Suno. */
 export class FakeMusicGateway implements MusicGateway {
   readonly generateCalls: GenerateMusicParams[] = [];
   taskId = 'task-fake-1';

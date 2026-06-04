@@ -2,7 +2,7 @@ import { makeHandleSunoCallbackUseCase } from '@/infra/composition/factories';
 import { parseSunoCallback } from '@/infra/gateways/suno/suno-callback';
 
 /**
- * POST /api/webhooks/suno — callback da Suno. Processa apenas o estágio final
+ * POST /api/webhooks/suno, callback da Suno. Processa apenas o estágio final
  * (`complete`); o use case é idempotente. Responde sempre 200 para o provedor
  * não re-tentar em loop. CLAUDE.md §9.
  */

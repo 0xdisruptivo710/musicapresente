@@ -7,8 +7,8 @@ export interface HeroAudio {
 
 /** Áudios do card de depoimento da Sueli no hero (assets em /public/landing). */
 export const HERO_AUDIOS: HeroAudio[] = [
-  { src: "/landing/audio-demo-01.ogg", label: "🎤 Reação dela ao ouvir — parte 1" },
-  { src: "/landing/audio-demo-02.ogg", label: "🎤 Reação dela ao ouvir — parte 2" },
+  { src: "/landing/audio-demo-01.ogg", label: "🎤 Reação dela ao ouvir, parte 1" },
+  { src: "/landing/audio-demo-02.ogg", label: "🎤 Reação dela ao ouvir, parte 2" },
   { src: "/landing/sueli.mp3", label: "🎵 A música completa da filha da Sueli" },
 ];
 
@@ -17,7 +17,7 @@ export interface ProofStat {
   label: string;
 }
 
-/** Números de prova social — ajuste para refletir a realidade do seu negócio. */
+/** Números de prova social, ajuste para refletir a realidade do seu negócio. */
 export const PROOF_STATS: ProofStat[] = [
   { number: "+4.800", label: "músicas criadas" },
   { number: "4,9★", label: "avaliação média" },
@@ -89,7 +89,7 @@ export const STEPS: Step[] = [
     num: 2,
     emoji: "🎸",
     title: "Escolha o estilo",
-    desc: "Sertanejo, MPB, Gospel, Pop, Pagode — o ritmo que mais emociona quem vai receber.",
+    desc: "Sertanejo, MPB, Gospel, Pop, Pagode, o ritmo que mais emociona quem vai receber.",
     emotion: "O ritmo certo faz ela bater o pé e chorar ao mesmo tempo.",
   },
   {

@@ -47,8 +47,8 @@ export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: 
 
       <p className="mt-3 text-center text-xs text-zinc-500">
         {paid
-          ? "🔓 Música completa liberada — aproveite!"
-          : "Prévia — desbloqueie a versão completa logo abaixo."}
+          ? "🔓 Música completa liberada, aproveite!"
+          : "Prévia, desbloqueie a versão completa logo abaixo."}
       </p>
     </div>
   );

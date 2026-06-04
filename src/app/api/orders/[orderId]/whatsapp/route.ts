@@ -5,7 +5,7 @@ import { toErrorResponse } from '@/shared/api/error-response';
 
 const bodySchema = z.object({ whatsapp: z.string().min(1) });
 
-/** POST /api/orders/:orderId/whatsapp — captura o WhatsApp do cliente (pré-pagamento). */
+/** POST /api/orders/:orderId/whatsapp, captura o WhatsApp do cliente (pré-pagamento). */
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ orderId: string }> },

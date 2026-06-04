@@ -10,7 +10,7 @@ export interface CaptureWhatsAppInput {
 
 /**
  * Captura o WhatsApp do cliente antes do pagamento (alavanca de conversão /
- * recuperação — CLAUDE.md §1, §5.3). Normaliza e valida o número.
+ * recuperação, CLAUDE.md §1, §5.3). Normaliza e valida o número.
  */
 export class CaptureWhatsAppUseCase {
   constructor(private readonly orders: OrderRepository) {}

@@ -53,7 +53,7 @@ export function Testimonials() {
             <div className="relative aspect-[9/16] w-full">
               <Image
                 src={t.image}
-                alt={`Depoimento de cliente — ${t.date}`}
+                alt={`Depoimento de cliente, ${t.date}`}
                 fill
                 sizes="252px"
                 className="object-cover object-top"

@@ -17,7 +17,7 @@ const bodySchema = z.object({
     .optional(),
 });
 
-/** POST /api/orders/:orderId/payment — cria a cobrança PIX do pacote escolhido. */
+/** POST /api/orders/:orderId/payment, cria a cobrança PIX do pacote escolhido. */
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ orderId: string }> },
@@ -39,7 +39,7 @@ export async function POST(
   }
 }
 
-/** GET /api/orders/:orderId/payment — status da cobrança (polling do front). */
+/** GET /api/orders/:orderId/payment, status da cobrança (polling do front). */
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ orderId: string }> },
