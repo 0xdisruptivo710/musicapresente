@@ -30,7 +30,7 @@ export function Drawer({
         }`}
       />
       <div
-        className={`absolute top-0 flex h-full w-[86%] max-w-sm flex-col bg-[#0c0c14] shadow-2xl transition-transform duration-300 ${
+        className={`absolute top-0 flex h-full w-[86%] max-w-sm flex-col bg-[#1a0e12] shadow-2xl transition-transform duration-300 ${
           side === "right" ? "right-0 border-l" : "left-0 border-r"
         } border-white/10 ${open ? "translate-x-0" : hidden}`}
       >

@@ -14,7 +14,7 @@ export function AppTopbar({
   onOpenMenu: () => void;
 }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-[#08080c]/80 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/5 bg-[#100a0a]/80 backdrop-blur">
       <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
         <Link href="/" aria-label="Início">
           <Logo />
@@ -27,7 +27,7 @@ export function AppTopbar({
           <button
             type="button"
             onClick={onOpenGallery}
-            className="flex items-center gap-1.5 rounded-xl border border-violet-400/40 bg-violet-500/15 px-3 py-1.5 text-xs font-semibold text-violet-200 transition hover:bg-violet-500/25"
+            className="flex items-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-500/25"
           >
             🎵 Galeria
           </button>

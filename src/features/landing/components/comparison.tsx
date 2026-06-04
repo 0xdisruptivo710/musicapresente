@@ -46,10 +46,10 @@ export function Comparison() {
 
           <Reveal delay={120}>
             <div
-              className="relative h-full rounded-2xl border border-violet-500/40 bg-violet-500/[0.06] p-6"
-              style={{ boxShadow: "0 0 40px -12px rgba(168,85,247,0.5)" }}
+              className="relative h-full rounded-2xl border border-amber-500/40 bg-amber-500/[0.06] p-6"
+              style={{ boxShadow: "0 0 40px -12px rgba(245,158,11,0.5)" }}
             >
-              <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+              <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                 ✨ A melhor experiência
               </span>
               <h3 className="text-lg font-semibold text-white">Música Presente</h3>
@@ -61,7 +61,7 @@ export function Comparison() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 rounded-xl border border-violet-500/30 bg-black/20 p-3 text-center text-sm text-violet-200">
+              <div className="mt-5 rounded-xl border border-amber-500/30 bg-black/20 p-3 text-center text-sm text-amber-200">
                 A escolha óbvia para quem quer emocionar de verdade.
               </div>
               <CtaButton className="mt-5 w-full">Criar e Ouvir Grátis Agora</CtaButton>

@@ -43,7 +43,7 @@ export function Hero() {
 
         {/* Card de depoimento real (Sueli) */}
         <Reveal delay={120}>
-          <div className="rounded-3xl border border-violet-500/20 bg-white/[0.03] p-3 shadow-2xl shadow-violet-900/30">
+          <div className="rounded-3xl border border-amber-500/20 bg-white/[0.03] p-3 shadow-2xl shadow-amber-900/30">
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
               <Image
                 src="/landing/maeefilha.png"
@@ -61,7 +61,7 @@ export function Hero() {
 
             <div className="p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-violet-600 text-sm font-bold text-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-amber-600 text-sm font-bold text-white">
                   S
                 </div>
                 <div>

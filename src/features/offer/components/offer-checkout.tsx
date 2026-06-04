@@ -58,7 +58,7 @@ export function OfferCheckout({
         onClick={onClose}
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
       />
-      <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0c0c14] p-5">
+      <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#1a0e12] p-5">
         <div className="flex items-center justify-between">
           <div className="text-sm font-semibold text-white">
             {paid ? "Pagamento confirmado" : "Pague com PIX"}
@@ -76,8 +76,8 @@ export function OfferCheckout({
               Sua música está liberada. Feche para ouvir a versão completa.
             </p>
             {orderCode ? (
-              <div className="mt-4 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3">
-                <div className="text-[10px] uppercase tracking-widest text-violet-300">
+              <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3">
+                <div className="text-[10px] uppercase tracking-widest text-amber-300">
                   Código do seu pedido
                 </div>
                 <div className="text-2xl font-bold tracking-[0.3em] text-white">{orderCode}</div>
@@ -123,14 +123,14 @@ export function OfferCheckout({
                 <button
                   type="button"
                   onClick={() => void copyPix()}
-                  className="mt-2 w-full rounded-xl border border-violet-400 bg-violet-500/20 py-2.5 text-sm font-bold text-white transition hover:bg-violet-500/30"
+                  className="mt-2 w-full rounded-xl border border-amber-400 bg-amber-500/20 py-2.5 text-sm font-bold text-white transition hover:bg-amber-500/30"
                 >
                   {copied ? "Código copiado! ✓" : "Copiar código PIX"}
                 </button>
               </>
             ) : null}
             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-zinc-400">
-              <span className="h-2 w-2 animate-ping rounded-full bg-violet-400" />
+              <span className="h-2 w-2 animate-ping rounded-full bg-amber-400" />
               Aguardando a confirmação do pagamento…
             </div>
           </div>

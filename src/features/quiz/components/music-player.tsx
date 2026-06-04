@@ -10,8 +10,8 @@ export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: 
   if (!current) return null;
 
   return (
-    <div className="animate-rise self-stretch rounded-2xl border border-violet-500/30 bg-white/[0.04] p-5">
-      <div className="text-center text-[11px] font-semibold uppercase tracking-widest text-violet-300">
+    <div className="animate-rise self-stretch rounded-2xl border border-amber-500/30 bg-white/[0.04] p-5">
+      <div className="text-center text-[11px] font-semibold uppercase tracking-widest text-amber-300">
         Sua música ficou pronta 🎉
       </div>
       {current.title ? (
@@ -27,7 +27,7 @@ export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: 
               onClick={() => setActive(index)}
               className={`rounded-xl px-5 py-2 text-sm font-bold transition ${
                 index === active
-                  ? "border border-violet-400 bg-violet-500/20 text-white"
+                  ? "border border-amber-400 bg-amber-500/20 text-white"
                   : "border border-white/10 bg-white/[0.04] text-zinc-300 hover:bg-white/[0.07]"
               }`}
             >

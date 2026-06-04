@@ -150,14 +150,14 @@ export function QuizChat() {
                 value={name}
                 onChange={(event) => setName(event.target.value)}
                 placeholder="Nome do homenageado(a)"
-                className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-violet-400"
+                className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-amber-400"
               />
               <textarea
                 value={story}
                 onChange={(event) => setStory(event.target.value)}
                 rows={5}
                 placeholder="Conte a história de vocês, detalhes, apelidos, momentos marcantes... (ou grave um áudio abaixo)"
-                className="resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-violet-400"
+                className="resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-amber-400"
               />
               <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-zinc-600">
                 <span className="h-px flex-1 bg-white/10" />
@@ -247,7 +247,7 @@ export function QuizChat() {
               {quiz.orderId ? (
                 <Link
                   href={`/oferta/${quiz.orderId}`}
-                  style={{ background: "linear-gradient(90deg,#f97316,#ec4899,#a855f7)" }}
+                  style={{ background: "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)" }}
                   className="block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white transition hover:opacity-95"
                 >
                   🔓 Gostou? Desbloquear minha música

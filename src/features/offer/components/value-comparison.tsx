@@ -38,7 +38,7 @@ export function ValueComparison({ fromCents }: { fromCents: number }) {
               key={it.name}
               className={`rounded-2xl border p-5 text-center ${
                 it.highlight
-                  ? "border-violet-500/40 bg-violet-500/[0.06]"
+                  ? "border-amber-500/40 bg-amber-500/[0.06]"
                   : "border-white/10 bg-white/[0.02]"
               }`}
             >
@@ -46,7 +46,7 @@ export function ValueComparison({ fromCents }: { fromCents: number }) {
               <div className={`mt-2 text-sm font-semibold ${it.highlight ? "text-white" : "text-zinc-300"}`}>
                 {it.name}
               </div>
-              <div className={`mt-1 text-sm ${it.highlight ? "text-violet-300" : "text-zinc-500"}`}>
+              <div className={`mt-1 text-sm ${it.highlight ? "text-amber-300" : "text-zinc-500"}`}>
                 {it.priceLabel}
               </div>
               <div className="mt-2 text-[11px] uppercase tracking-wider text-zinc-500">{it.life}</div>

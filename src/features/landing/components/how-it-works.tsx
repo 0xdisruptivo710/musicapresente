@@ -20,7 +20,7 @@ export function HowItWorks() {
               <div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
                 <div
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
-                  style={{ background: "linear-gradient(135deg,#f97316,#ec4899,#a855f7)" }}
+                  style={{ background: "linear-gradient(135deg,#fbbf24,#f59e0b,#d97706)" }}
                 >
                   {step.num}
                 </div>
@@ -29,7 +29,7 @@ export function HowItWorks() {
                     {step.emoji} {step.title}
                   </div>
                   <div className="mt-1 text-sm text-zinc-400">{step.desc}</div>
-                  <div className="mt-2 text-sm italic text-violet-300/90">{step.emotion}</div>
+                  <div className="mt-2 text-sm italic text-amber-300/90">{step.emotion}</div>
                 </div>
               </div>
             </Reveal>

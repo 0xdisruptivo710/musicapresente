@@ -34,7 +34,7 @@ export function AudioPlayer({
 
   const ratio = dur > 0 ? cur / dur : 0;
   const filled = Math.round(ratio * BARS);
-  const fillClass = accent === "pink" ? "bg-pink-400" : "bg-violet-400";
+  const fillClass = accent === "pink" ? "bg-orange-400" : "bg-amber-400";
 
   function toggle(): void {
     const a = ref.current;
@@ -58,7 +58,7 @@ export function AudioPlayer({
         onClick={toggle}
         aria-label={playing ? "Pausar" : "Tocar"}
         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition active:scale-95"
-        style={{ background: "linear-gradient(135deg,#ec4899,#a855f7)" }}
+        style={{ background: "linear-gradient(135deg,#f59e0b,#d97706)" }}
       >
         {playing ? (
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">

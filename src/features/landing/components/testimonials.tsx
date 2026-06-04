@@ -20,7 +20,7 @@ function DepoAudioButton({ src }: { src: string }) {
     <button
       type="button"
       onClick={toggle}
-      className="mt-2 inline-flex items-center gap-2 rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1.5 text-xs font-semibold text-violet-200 transition hover:bg-violet-500/25"
+      className="mt-2 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-500/25"
     >
       <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
         {playing ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M8 5v14l11-7z" />}

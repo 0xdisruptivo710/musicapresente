@@ -20,7 +20,7 @@ function GalleryItem({ orderId, onNavigate }: { orderId: string; onNavigate: () 
       onClick={onNavigate}
       className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition hover:bg-white/[0.06]"
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/30 to-pink-500/20 text-lg">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/30 to-orange-500/20 text-lg">
         🎵
       </span>
       <span className="min-w-0 flex-1">
@@ -56,7 +56,7 @@ export function GalleryDrawer({
           <Link
             href="/criar"
             onClick={onClose}
-            className="mt-4 inline-block rounded-xl bg-violet-500/20 px-4 py-2 text-sm font-semibold text-violet-200 transition hover:bg-violet-500/30"
+            className="mt-4 inline-block rounded-xl bg-amber-500/20 px-4 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-500/30"
           >
             Criar minha primeira música
           </Link>

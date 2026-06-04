@@ -83,8 +83,8 @@ export function PaymentPanel({
   // 2) Cobrança criada — QR + copia-e-cola + aguardando confirmação
   if (charge) {
     return (
-      <div className="animate-rise self-stretch rounded-2xl border border-violet-500/30 bg-white/[0.04] p-5">
-        <div className="text-center text-[11px] font-semibold uppercase tracking-widest text-violet-300">
+      <div className="animate-rise self-stretch rounded-2xl border border-amber-500/30 bg-white/[0.04] p-5">
+        <div className="text-center text-[11px] font-semibold uppercase tracking-widest text-amber-300">
           Pague {formatBRL(charge.amountCents)} via PIX
         </div>
         {charge.brCodeBase64 ? (
@@ -106,14 +106,14 @@ export function PaymentPanel({
             <button
               type="button"
               onClick={() => void copyPix()}
-              className="mt-2 w-full rounded-xl border border-violet-400 bg-violet-500/20 py-2.5 text-sm font-bold text-white transition hover:bg-violet-500/30"
+              className="mt-2 w-full rounded-xl border border-amber-400 bg-amber-500/20 py-2.5 text-sm font-bold text-white transition hover:bg-amber-500/30"
             >
               {copied ? "Código copiado! ✓" : "Copiar código PIX"}
             </button>
           </div>
         ) : null}
         <div className="mt-4 flex items-center justify-center gap-2 text-sm text-zinc-400">
-          <span className="h-2 w-2 animate-ping rounded-full bg-violet-400" />
+          <span className="h-2 w-2 animate-ping rounded-full bg-amber-400" />
           Aguardando a confirmação do pagamento…
         </div>
         <p className="mt-1 text-center text-xs text-zinc-500">
@@ -125,8 +125,8 @@ export function PaymentPanel({
 
   // 3) Oferta — CTA inicial
   return (
-    <div className="animate-rise self-stretch rounded-2xl border border-violet-500/30 bg-gradient-to-b from-violet-500/[0.08] to-transparent p-5 text-center">
-      <div className="text-[11px] font-semibold uppercase tracking-widest text-violet-300">
+    <div className="animate-rise self-stretch rounded-2xl border border-amber-500/30 bg-gradient-to-b from-amber-500/[0.08] to-transparent p-5 text-center">
+      <div className="text-[11px] font-semibold uppercase tracking-widest text-amber-300">
         Desbloqueie a música completa
       </div>
       <div className="mt-2 flex items-baseline justify-center gap-1.5">
@@ -143,7 +143,7 @@ export function PaymentPanel({
         type="button"
         onClick={onStart}
         disabled={starting}
-        style={{ background: "linear-gradient(90deg,#f97316,#ec4899,#a855f7)" }}
+        style={{ background: "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)" }}
         className="mt-4 w-full rounded-2xl py-3.5 text-sm font-semibold text-white transition hover:opacity-95 disabled:opacity-60"
       >
         {starting ? "Gerando PIX…" : "Pagar com PIX 🔓"}

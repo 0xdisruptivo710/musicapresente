@@ -23,7 +23,7 @@ export function OfferView({ orderId }: { orderId: string }) {
 
   return (
     <main className="min-h-dvh pb-28">
-      <header className="sticky top-0 z-30 border-b border-white/5 bg-[#08080c]/70 px-4 py-3 backdrop-blur sm:px-6">
+      <header className="sticky top-0 z-30 border-b border-white/5 bg-[#100a0a]/70 px-4 py-3 backdrop-blur sm:px-6">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Logo />
           <Link href="/criar" className="text-xs text-zinc-400 transition hover:text-white">

@@ -57,10 +57,10 @@ export function WelcomeTour() {
   return (
     <div className="fixed inset-0 z-[60]">
       <button type="button" aria-label="Pular tour" onClick={close} className="absolute inset-0 bg-black/70" />
-      <div className="absolute right-3 top-[64px] w-[min(92vw,340px)] rounded-2xl border border-violet-500/30 bg-[#12121a] p-4 shadow-2xl">
-        <div className="absolute -top-2 right-6 h-4 w-4 rotate-45 border-l border-t border-violet-500/30 bg-[#12121a]" />
+      <div className="absolute right-3 top-[64px] w-[min(92vw,340px)] rounded-2xl border border-amber-500/30 bg-[#1f1016] p-4 shadow-2xl">
+        <div className="absolute -top-2 right-6 h-4 w-4 rotate-45 border-l border-t border-amber-500/30 bg-[#1f1016]" />
         <div className="relative">
-          <div className="text-[11px] font-semibold uppercase tracking-widest text-violet-300">
+          <div className="text-[11px] font-semibold uppercase tracking-widest text-amber-300">
             Passo {step + 1}/{STEPS.length}
           </div>
           <div className="mt-1 text-base font-semibold text-white">{current.title}</div>
@@ -82,7 +82,7 @@ export function WelcomeTour() {
               <button
                 type="button"
                 onClick={() => (last ? close() : setStep(step + 1))}
-                style={{ background: "linear-gradient(90deg,#f97316,#ec4899,#a855f7)" }}
+                style={{ background: "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)" }}
                 className="rounded-xl px-4 py-2 text-sm font-semibold text-white transition hover:opacity-95"
               >
                 {last ? "Começar" : "Próximo"}

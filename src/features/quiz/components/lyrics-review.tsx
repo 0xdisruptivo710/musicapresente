@@ -91,7 +91,7 @@ export function AdjustBox({
         value={text}
         onChange={(event) => setText(event.target.value)}
         placeholder="Ex.: deixe mais alegre, cite nosso cachorro, encurte o refrão..."
-        className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-violet-400"
+        className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-amber-400"
       />
       <div className="flex gap-2">
         <GradientButton type="submit" disabled={!text.trim() || busy}>

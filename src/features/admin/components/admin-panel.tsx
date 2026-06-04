@@ -4,7 +4,7 @@ import { useState } from "react";
 import { checkPassword, createTribute, uploadPhoto } from "../admin-api";
 
 const INPUT =
-  "w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-violet-400";
+  "w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-amber-400";
 const LABEL = "block text-[11px] uppercase tracking-widest text-zinc-500";
 
 export function AdminPanel() {
@@ -84,7 +84,7 @@ export function AdminPanel() {
           type="button"
           onClick={() => void login()}
           disabled={checking || !password}
-          style={{ background: "linear-gradient(90deg,#8b5cf6,#ec4899)" }}
+          style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
           className="mt-3 rounded-2xl py-3 text-sm font-bold text-white disabled:opacity-50"
         >
           {checking ? "Entrando…" : "Entrar"}
@@ -104,7 +104,7 @@ export function AdminPanel() {
           href={path}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 break-all rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm text-violet-200"
+          className="mt-4 break-all rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200"
         >
           {path}
         </a>
@@ -183,7 +183,7 @@ export function AdminPanel() {
             accept="image/*"
             multiple
             onChange={(e) => void onFiles(e.target.files)}
-            className="mt-1 block w-full text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border-0 file:bg-violet-500/20 file:px-3 file:py-2 file:text-violet-200"
+            className="mt-1 block w-full text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border-0 file:bg-amber-500/20 file:px-3 file:py-2 file:text-amber-200"
           />
           {uploading ? <p className="mt-1 text-xs text-zinc-400">Enviando fotos…</p> : null}
           {photos.length > 0 ? (
@@ -202,7 +202,7 @@ export function AdminPanel() {
           type="button"
           onClick={() => void publish()}
           disabled={publishing || !code || !honoreeName}
-          style={{ background: "linear-gradient(90deg,#8b5cf6,#ec4899)" }}
+          style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
           className="mt-2 rounded-2xl py-3.5 text-sm font-bold text-white disabled:opacity-50"
         >
           {publishing ? "Publicando…" : "Publicar página VIP"}

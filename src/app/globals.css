@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: var(--font-geist-sans);
-  --color-accent: #a855f7;
+  --color-accent: #f59e0b;
 }
 
 html,
@@ -12,16 +12,16 @@ body {
 
 /* Cor base no html cobre TODA a área de rolagem — elimina a "emenda" no fundo. */
 html {
-  background-color: #08080c;
+  background-color: #100a0a;
 }
 
 body {
   min-height: 100dvh;
-  /* Gradiente fixo na viewport: não cria divisão ao rolar páginas longas. */
+  /* Dourado & Vinho: glow âmbar no topo + toque de vinho, fundo fixo. */
   background:
-    radial-gradient(900px 520px at 50% -8%, rgba(139, 92, 246, 0.22), transparent 60%),
-    radial-gradient(700px 520px at 100% 0%, rgba(236, 72, 153, 0.1), transparent 55%),
-    #08080c;
+    radial-gradient(900px 520px at 50% -8%, rgba(245, 158, 11, 0.16), transparent 60%),
+    radial-gradient(640px 480px at 100% 2%, rgba(190, 18, 60, 0.12), transparent 55%),
+    #100a0a;
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: #ededed;
@@ -46,7 +46,7 @@ body {
 
 /* Título com gradiente quente */
 .text-gradient {
-  background: linear-gradient(90deg, #f97316, #ec4899, #a855f7);
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

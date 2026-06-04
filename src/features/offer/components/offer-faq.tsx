@@ -44,7 +44,7 @@ export function OfferFaq() {
                 className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-medium text-white"
               >
                 {faq.q}
-                <span className={`shrink-0 text-lg text-violet-300 transition-transform ${isOpen ? "rotate-45" : ""}`}>
+                <span className={`shrink-0 text-lg text-amber-300 transition-transform ${isOpen ? "rotate-45" : ""}`}>
                   +
                 </span>
               </button>

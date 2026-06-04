@@ -3,8 +3,8 @@
 import type { ReactNode } from "react";
 import type { OptionItem } from "@/features/quiz/data";
 
-const CTA_GRADIENT = "linear-gradient(90deg,#f97316,#ec4899,#a855f7)";
-const BAR_GRADIENT = "linear-gradient(90deg,#3b82f6,#a855f7,#ec4899)";
+const CTA_GRADIENT = "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)";
+const BAR_GRADIENT = "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)";
 
 export function GradientButton({
   children,
@@ -51,12 +51,12 @@ export function ChoiceCard({
 }) {
   return (
     <div
-      className="animate-rise flex items-center gap-3 self-end rounded-2xl border border-violet-500/40 bg-violet-500/10 px-5 py-3"
-      style={{ boxShadow: "0 0 24px -6px rgba(168,85,247,0.45)" }}
+      className="animate-rise flex items-center gap-3 self-end rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-3"
+      style={{ boxShadow: "0 0 24px -6px rgba(245,158,11,0.45)" }}
     >
       <span className="text-2xl">{emoji}</span>
       <div className="text-right">
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-violet-300">
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-amber-300">
           Sua escolha
         </div>
         <div className="font-semibold text-white">{label}</div>
@@ -94,7 +94,7 @@ export function OptionGrid({
             onClick={() => onSelect(option)}
             className={`flex flex-col items-center gap-2 rounded-2xl border px-3 py-5 text-center transition active:scale-[0.98] ${
               selected
-                ? "border-violet-400 bg-violet-500/15"
+                ? "border-amber-400 bg-amber-500/15"
                 : disabled
                   ? "cursor-not-allowed border-white/10 bg-white/[0.02] opacity-40"
                   : "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
@@ -123,7 +123,7 @@ export function ProgressFooter({
   const pct = Math.min(100, Math.round((step / total) * 100));
   return (
     <div className="sticky bottom-0 z-10 mt-6 pt-2">
-      <div className="rounded-2xl border border-white/10 bg-[#0c0c14]/90 px-5 py-3 backdrop-blur">
+      <div className="rounded-2xl border border-white/10 bg-[#1a0e12]/90 px-5 py-3 backdrop-blur">
         <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
           <span>
             Etapa {Math.min(step, total)}/{total}

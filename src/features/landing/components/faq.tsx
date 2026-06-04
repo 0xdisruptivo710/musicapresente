@@ -19,7 +19,7 @@ export function Faq() {
             >
               {faq.q}
               <span
-                className={`shrink-0 text-lg text-violet-300 transition-transform ${isOpen ? "rotate-45" : ""}`}
+                className={`shrink-0 text-lg text-amber-300 transition-transform ${isOpen ? "rotate-45" : ""}`}
               >
                 +
               </span>

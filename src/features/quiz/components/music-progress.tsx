@@ -14,7 +14,7 @@ const MESSAGES = [
 ];
 
 const TOTAL_MS = 5 * 60 * 1000; // referência de 5 min
-const BAR = "linear-gradient(90deg,#3b82f6,#a855f7,#ec4899)";
+const BAR = "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)";
 
 /** Tela de espera da música: barra por tempo + mensagens rotativas + cronômetro. */
 export function MusicProgress() {

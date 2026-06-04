@@ -6,7 +6,7 @@ export function OfferPaywall({ songs, paid }: { songs: SongDTO[]; paid: boolean 
   return (
     <section className="px-4 pt-8 sm:px-6">
       <div className="mx-auto max-w-xl text-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-violet-500/40 bg-violet-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-violet-300">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-amber-300">
           🔒 Desbloqueio imediato
         </span>
         <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl">

@@ -17,7 +17,7 @@ export function Occasions() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {OCCASIONS.map((occ, i) => (
             <Reveal key={occ.title} delay={i * 50}>
-              <div className="flex h-full flex-col items-center rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center transition hover:border-violet-400/40 hover:bg-white/[0.05]">
+              <div className="flex h-full flex-col items-center rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center transition hover:border-amber-400/40 hover:bg-white/[0.05]">
                 <span className="text-3xl">{occ.emoji}</span>
                 <div className="mt-2 font-semibold text-white">{occ.title}</div>
                 <div className="text-xs text-zinc-400">{occ.desc}</div>

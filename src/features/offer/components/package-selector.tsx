@@ -40,12 +40,12 @@ export function PackageSelector({
               onClick={() => onSelect(pkg.id)}
               className={`relative flex flex-col rounded-2xl border p-5 text-left transition ${
                 selected
-                  ? "border-violet-400 bg-violet-500/[0.08] shadow-[0_0_40px_-12px_rgba(168,85,247,0.6)]"
+                  ? "border-amber-400 bg-amber-500/[0.08] shadow-[0_0_40px_-12px_rgba(245,158,11,0.6)]"
                   : "border-white/10 bg-white/[0.02] hover:border-white/25"
               }`}
             >
               {i === 1 ? (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-pink-500 px-3 py-0.5 text-[10px] font-bold uppercase text-white">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-orange-500 px-3 py-0.5 text-[10px] font-bold uppercase text-white">
                   Mais escolhido
                 </span>
               ) : null}
@@ -58,7 +58,7 @@ export function PackageSelector({
               <div className="flex items-center gap-2 pr-12">
                 <span
                   className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] ${
-                    selected ? "border-violet-400 bg-violet-500 text-white" : "border-white/30"
+                    selected ? "border-amber-400 bg-amber-500 text-white" : "border-white/30"
                   }`}
                 >
                   {selected ? "✓" : ""}
@@ -85,7 +85,7 @@ export function PackageSelector({
               <div
                 className={`mt-4 rounded-xl py-2 text-center text-xs font-bold ${
                   selected
-                    ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white"
+                    ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
                     : "border border-white/15 text-zinc-300"
                 }`}
               >
@@ -107,7 +107,7 @@ export function PackageSelector({
               type="button"
               onClick={() => onTogglePhotos(false)}
               className={`rounded-xl px-3 py-2 text-center text-sm ${
-                !extraPhotos ? "bg-violet-500/30 text-white" : "bg-white/5 text-zinc-400"
+                !extraPhotos ? "bg-amber-500/30 text-white" : "bg-white/5 text-zinc-400"
               }`}
             >
               5 fotos <span className="block text-[10px] opacity-70">já inclusas</span>
@@ -116,7 +116,7 @@ export function PackageSelector({
               type="button"
               onClick={() => onTogglePhotos(true)}
               className={`rounded-xl px-3 py-2 text-center text-sm ${
-                extraPhotos ? "bg-violet-500/30 text-white" : "bg-white/5 text-zinc-400"
+                extraPhotos ? "bg-amber-500/30 text-white" : "bg-white/5 text-zinc-400"
               }`}
             >
               20 fotos <span className="block text-[10px] opacity-70">+R$10</span>
