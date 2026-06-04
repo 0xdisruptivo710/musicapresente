@@ -60,7 +60,7 @@ export class CreatePixChargeUseCase {
 
     const charge = await this.gateway.createPixCharge({
       amountCents: priceCents,
-      description: `Cancao que Encanta - musica personalizada (pedido #${order.orderNumber ?? ''})`,
+      description: `Musica Presente - musica personalizada (pedido #${order.orderNumber ?? ''})`,
       expiresInSeconds: 3600,
       externalId: input.orderId,
       customer: input.customer,

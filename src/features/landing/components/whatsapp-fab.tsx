@@ -3,7 +3,7 @@ const WHATSAPP = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP ?? "";
 /** Botão flutuante de WhatsApp (some se o número não estiver configurado). */
 export function WhatsappFab() {
   if (!WHATSAPP) return null;
-  const msg = encodeURIComponent("Olá! Gostaria de tirar uma dúvida sobre a Canção que Encanta. 🎵");
+  const msg = encodeURIComponent("Olá! Gostaria de tirar uma dúvida sobre a Música Presente. 🎵");
 
   return (
     <a

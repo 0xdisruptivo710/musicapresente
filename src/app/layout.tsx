@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Canção que Encanta — músicas personalizadas com IA",
+  title: "Música Presente — músicas personalizadas com IA",
   description:
     "Transforme a sua história em uma música personalizada e inesquecível.",
 };

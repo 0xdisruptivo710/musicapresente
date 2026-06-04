@@ -52,7 +52,7 @@ export function Comparison() {
               <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                 ✨ A melhor experiência
               </span>
-              <h3 className="text-lg font-semibold text-white">Canção que Encanta</h3>
+              <h3 className="text-lg font-semibold text-white">Música Presente</h3>
               <ul className="mt-4 space-y-3 text-sm text-zinc-200">
                 {PREMIUM.map((item) => (
                   <li key={item} className="flex gap-2">

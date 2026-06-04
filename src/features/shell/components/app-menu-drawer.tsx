@@ -23,7 +23,7 @@ function RowInner({ icon, title, sub }: { icon: string; title: string; sub: stri
 export function AppMenuDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const support = WHATSAPP
     ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-        "Olá! Preciso de ajuda com a Canção que Encanta. 🎵",
+        "Olá! Preciso de ajuda com a Música Presente. 🎵",
       )}`
     : null;
 
@@ -53,7 +53,7 @@ export function AppMenuDrawer({ open, onClose }: { open: boolean; onClose: () =>
       </div>
 
       <div className="mt-6 text-center text-[10px] uppercase tracking-widest text-zinc-600">
-        Canção que Encanta · v0.1.0
+        Música Presente · v0.1.0
       </div>
     </Drawer>
   );
