@@ -61,25 +61,25 @@ export function AudioRecorder({
         <button
           type="button"
           onClick={stop}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-200 transition hover:bg-red-500/20"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-600 transition hover:bg-red-500/20"
         >
-          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-red-400" />
+          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-red-500" />
           Gravando… toque para parar
         </button>
       ) : state === "transcribing" ? (
-        <div className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-zinc-300">
+        <div className="inline-flex items-center justify-center gap-2 rounded-xl border border-hair bg-white px-4 py-3 text-sm text-ink-soft">
           ✍️ Transcrevendo o seu áudio…
         </div>
       ) : (
         <button
           type="button"
           onClick={start}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-zinc-200 transition hover:border-white/25 hover:bg-white/[0.07]"
+          className="inline-flex items-center justify-center gap-2 rounded-xl border border-hair bg-white px-4 py-3 text-sm font-medium text-ink transition hover:border-brand/40 hover:bg-surface/40"
         >
           🎤 Contar por áudio
         </button>
       )}
-      {errorMsg ? <p className="text-xs text-red-400">{errorMsg}</p> : null}
+      {errorMsg ? <p className="text-xs text-red-500">{errorMsg}</p> : null}
     </div>
   );
 }

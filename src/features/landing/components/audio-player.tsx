@@ -21,11 +21,12 @@ function fmt(seconds: number): string {
 export function AudioPlayer({
   src,
   label,
-  accent = "violet",
+  tone = "light",
 }: {
   src: string;
   label?: string;
-  accent?: "violet" | "pink";
+  /** "light" para fundos claros, "dark" para a seção escura. */
+  tone?: "light" | "dark";
 }) {
   const ref = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -34,7 +35,14 @@ export function AudioPlayer({
 
   const ratio = dur > 0 ? cur / dur : 0;
   const filled = Math.round(ratio * BARS);
-  const fillClass = accent === "pink" ? "bg-orange-400" : "bg-amber-400";
+
+  const dark = tone === "dark";
+  const wrap = dark
+    ? "border-white/10 bg-white/[0.04]"
+    : "border-hair bg-white";
+  const labelCls = dark ? "text-white/70" : "text-ink-soft";
+  const timeCls = dark ? "text-white/40" : "text-ink-soft/70";
+  const emptyBar = dark ? "bg-white/15" : "bg-ink/10";
 
   function toggle(): void {
     const a = ref.current;
@@ -52,13 +60,12 @@ export function AudioPlayer({
   }
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5">
+    <div className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 ${wrap}`}>
       <button
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pausar" : "Tocar"}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition active:scale-95"
-        style={{ background: "linear-gradient(135deg,#f59e0b,#d97706)" }}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-white transition hover:bg-brand-hover active:scale-95"
       >
         {playing ? (
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
@@ -72,24 +79,26 @@ export function AudioPlayer({
       </button>
 
       <div className="min-w-0 flex-1">
-        {label ? <div className="mb-1 truncate text-xs text-zinc-300">{label}</div> : null}
+        {label ? <div className={`mb-1 truncate text-xs ${labelCls}`}>{label}</div> : null}
         <div className="flex h-7 cursor-pointer items-center gap-[2px]" onClick={seek}>
           {Array.from({ length: BARS }).map((_, i) => (
             <span
               key={i}
-              className={`flex-1 rounded-full transition-colors ${i < filled ? fillClass : "bg-white/15"}`}
+              className={`flex-1 rounded-full transition-colors ${i < filled ? "bg-brand" : emptyBar}`}
               style={{ height: `${barHeight(i)}px` }}
             />
           ))}
         </div>
       </div>
 
-      <div className="shrink-0 text-xs tabular-nums text-zinc-400">{fmt(cur)}</div>
+      <div className={`shrink-0 text-xs tabular-nums ${timeCls}`}>{fmt(cur)}</div>
 
       <audio
         ref={ref}
         src={src}
         preload="metadata"
+        controlsList="nodownload noplaybackrate"
+        onContextMenu={(e) => e.preventDefault()}
         onPlay={() => {
           document.querySelectorAll("audio").forEach((el) => {
             if (el !== ref.current) el.pause();

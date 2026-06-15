@@ -4,8 +4,8 @@ import { useState } from "react";
 import { checkPassword, createTribute, uploadPhoto } from "../admin-api";
 
 const INPUT =
-  "w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-amber-400";
-const LABEL = "block text-[11px] uppercase tracking-widest text-zinc-500";
+  "w-full rounded-xl border border-hair bg-white px-4 py-3 text-sm text-ink outline-none placeholder:text-ink-soft focus:border-brand focus:ring-2 focus:ring-brand/40";
+const LABEL = "block text-[11px] uppercase tracking-widest text-ink-soft";
 
 export function AdminPanel() {
   const [password, setPassword] = useState("");
@@ -69,8 +69,8 @@ export function AdminPanel() {
   if (!authed) {
     return (
       <main className="mx-auto flex min-h-dvh max-w-sm flex-col justify-center px-6">
-        <h1 className="text-xl font-bold text-white">Painel admin</h1>
-        <p className="mt-1 text-sm text-zinc-400">Criação de Páginas VIP</p>
+        <h1 className="text-xl font-bold text-ink">Painel admin</h1>
+        <p className="mt-1 text-sm text-ink-soft">Criação de Páginas VIP</p>
         <input
           type="password"
           value={password}
@@ -79,13 +79,12 @@ export function AdminPanel() {
           placeholder="Senha"
           className={`mt-4 ${INPUT}`}
         />
-        {authErr ? <p className="mt-1 text-xs text-red-400">{authErr}</p> : null}
+        {authErr ? <p className="mt-1 text-xs text-red-500">{authErr}</p> : null}
         <button
           type="button"
           onClick={() => void login()}
           disabled={checking || !password}
-          style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
-          className="mt-3 rounded-2xl py-3 text-sm font-bold text-white disabled:opacity-50"
+          className="mt-3 rounded-2xl bg-brand py-3 text-sm font-bold text-white hover:bg-brand-hover disabled:opacity-50"
         >
           {checking ? "Entrando…" : "Entrar"}
         </button>
@@ -99,19 +98,19 @@ export function AdminPanel() {
     return (
       <main className="mx-auto flex min-h-dvh max-w-md flex-col justify-center px-6 text-center">
         <div className="text-4xl">✅</div>
-        <h1 className="mt-2 text-xl font-bold text-white">Página publicada!</h1>
+        <h1 className="mt-2 text-xl font-bold text-ink">Página publicada!</h1>
         <a
           href={path}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 break-all rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200"
+          className="mt-4 break-all rounded-xl border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand"
         >
           {path}
         </a>
         <button
           type="button"
           onClick={() => void navigator.clipboard.writeText(`${window.location.origin}${path}`)}
-          className="mt-3 rounded-2xl border border-white/15 py-3 text-sm font-semibold text-white hover:bg-white/5"
+          className="mt-3 rounded-2xl border border-hair py-3 text-sm font-semibold text-ink hover:bg-surface/40"
         >
           Copiar link completo
         </button>
@@ -125,7 +124,7 @@ export function AdminPanel() {
             setSignature("");
             setPhotos([]);
           }}
-          className="mt-3 text-sm text-zinc-400 hover:text-white"
+          className="mt-3 text-sm text-ink-soft hover:text-ink"
         >
           Criar outra
         </button>
@@ -136,7 +135,7 @@ export function AdminPanel() {
   // 3) Formulário
   return (
     <main className="mx-auto max-w-md px-5 py-8">
-      <h1 className="text-xl font-bold text-white">Criar Página VIP</h1>
+      <h1 className="text-xl font-bold text-ink">Criar Página VIP</h1>
       <div className="mt-5 flex flex-col gap-3">
         <div>
           <label className={LABEL}>Código do pedido</label>
@@ -183,9 +182,9 @@ export function AdminPanel() {
             accept="image/*"
             multiple
             onChange={(e) => void onFiles(e.target.files)}
-            className="mt-1 block w-full text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border-0 file:bg-amber-500/20 file:px-3 file:py-2 file:text-amber-200"
+            className="mt-1 block w-full text-sm text-ink-soft file:mr-3 file:rounded-lg file:border-0 file:bg-brand/15 file:px-3 file:py-2 file:text-brand"
           />
-          {uploading ? <p className="mt-1 text-xs text-zinc-400">Enviando fotos…</p> : null}
+          {uploading ? <p className="mt-1 text-xs text-ink-soft">Enviando fotos…</p> : null}
           {photos.length > 0 ? (
             <div className="mt-2 grid grid-cols-3 gap-2">
               {photos.map((url) => (
@@ -196,14 +195,13 @@ export function AdminPanel() {
           ) : null}
         </div>
 
-        {err ? <p className="text-sm text-red-400">{err}</p> : null}
+        {err ? <p className="text-sm text-red-500">{err}</p> : null}
 
         <button
           type="button"
           onClick={() => void publish()}
           disabled={publishing || !code || !honoreeName}
-          style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
-          className="mt-2 rounded-2xl py-3.5 text-sm font-bold text-white disabled:opacity-50"
+          className="mt-2 rounded-2xl bg-brand py-3.5 text-sm font-bold text-white hover:bg-brand-hover disabled:opacity-50"
         >
           {publishing ? "Publicando…" : "Publicar página VIP"}
         </button>

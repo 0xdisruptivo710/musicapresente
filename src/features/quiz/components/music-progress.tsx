@@ -14,7 +14,7 @@ const MESSAGES = [
 ];
 
 const TOTAL_MS = 5 * 60 * 1000; // referência de 5 min
-const BAR = "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)";
+const BAR = "linear-gradient(90deg,#b66d5b,#a05f4e)";
 
 /** Tela de espera da música: barra por tempo + mensagens rotativas + cronômetro. */
 export function MusicProgress() {
@@ -42,28 +42,28 @@ export function MusicProgress() {
   const clock = `${minutes}:${String(seconds).padStart(2, "0")}`;
 
   return (
-    <div className="animate-rise self-stretch rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+    <div className="animate-rise self-stretch rounded-2xl border border-hair bg-white p-6">
       <div className="flex items-center justify-between">
-        <span className="font-semibold text-white">Produzindo a sua música 🎧</span>
-        <span className="font-mono text-xs text-zinc-400">{clock}</span>
+        <span className="font-semibold text-ink">Produzindo a sua música 🎧</span>
+        <span className="font-mono text-xs text-ink-soft">{clock}</span>
       </div>
 
-      <p key={index} className="animate-rise mt-3 min-h-[44px] text-sm italic leading-relaxed text-zinc-300">
+      <p key={index} className="animate-rise mt-3 min-h-[44px] text-sm italic leading-relaxed text-ink-soft">
         {MESSAGES[index]}
       </p>
 
-      <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+      <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-surface-2">
         <div
           className="h-full rounded-full transition-[width] duration-500 ease-out"
           style={{ width: `${progress}%`, background: BAR }}
         />
       </div>
       <div className="mt-2 flex items-center justify-between text-xs">
-        <span className="font-semibold text-zinc-300">{Math.round(progress)}%</span>
-        <span className="text-zinc-500">Pode levar até 5 minutos ⏳</span>
+        <span className="font-semibold text-ink">{Math.round(progress)}%</span>
+        <span className="text-ink-soft">Pode levar até 5 minutos ⏳</span>
       </div>
 
-      <p className="mt-5 text-center text-xs text-zinc-500">
+      <p className="mt-5 text-center text-xs text-ink-soft">
         Pode deixar esta tela aberta, assim que ficar pronta, a música aparece aqui
         sozinha. 💜
       </p>

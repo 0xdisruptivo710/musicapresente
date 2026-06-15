@@ -10,12 +10,12 @@ export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: 
   if (!current) return null;
 
   return (
-    <div className="animate-rise self-stretch rounded-2xl border border-amber-500/30 bg-white/[0.04] p-5">
-      <div className="text-center text-[11px] font-semibold uppercase tracking-widest text-amber-300">
+    <div className="animate-rise self-stretch rounded-2xl border border-brand/30 bg-white p-5 shadow-sm">
+      <div className="text-center text-[11px] font-semibold uppercase tracking-widest text-brand">
         Sua música ficou pronta 🎉
       </div>
       {current.title ? (
-        <div className="mt-1 text-center text-lg font-semibold text-white">{current.title}</div>
+        <div className="mt-1 text-center font-serif text-lg font-semibold text-ink">{current.title}</div>
       ) : null}
 
       {songs.length > 1 ? (
@@ -27,8 +27,8 @@ export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: 
               onClick={() => setActive(index)}
               className={`rounded-xl px-5 py-2 text-sm font-bold transition ${
                 index === active
-                  ? "border border-amber-400 bg-amber-500/20 text-white"
-                  : "border border-white/10 bg-white/[0.04] text-zinc-300 hover:bg-white/[0.07]"
+                  ? "border border-brand bg-brand/15 text-brand"
+                  : "border border-hair bg-white text-ink-soft hover:bg-surface/40"
               }`}
             >
               {song.version.toUpperCase()}
@@ -37,15 +37,18 @@ export function MusicPlayer({ songs, paid = false }: { songs: SongDTO[]; paid?: 
         </div>
       ) : null}
 
-      {/* key força recarregar o player ao trocar de versão */}
+      {/* key força recarregar o player ao trocar de versão.
+          controlsList=nodownload + bloqueio do menu de contexto impedem baixar a prévia. */}
       <audio
         key={current.id}
         controls
+        controlsList="nodownload noplaybackrate"
+        onContextMenu={(e) => e.preventDefault()}
         src={current.audioUrl ?? undefined}
         className="mt-4 w-full"
       />
 
-      <p className="mt-3 text-center text-xs text-zinc-500">
+      <p className="mt-3 text-center text-xs text-ink-soft">
         {paid
           ? "🔓 Música completa liberada, aproveite!"
           : "Prévia, desbloqueie a versão completa logo abaixo."}

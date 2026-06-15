@@ -56,14 +56,14 @@ export function OfferCheckout({
         type="button"
         aria-label="Fechar"
         onClick={onClose}
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-brand-deep/40 backdrop-blur-sm"
       />
-      <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#1a0e12] p-5">
+      <div className="relative w-full max-w-md rounded-3xl border border-hair bg-white p-5 shadow-xl">
         <div className="flex items-center justify-between">
-          <div className="text-sm font-semibold text-white">
+          <div className="text-sm font-semibold text-ink">
             {paid ? "Pagamento confirmado" : "Pague com PIX"}
           </div>
-          <button type="button" onClick={onClose} aria-label="Fechar" className="text-zinc-400 hover:text-white">
+          <button type="button" onClick={onClose} aria-label="Fechar" className="text-ink-soft hover:text-ink">
             ✕
           </button>
         </div>
@@ -71,23 +71,23 @@ export function OfferCheckout({
         {paid ? (
           <div className="mt-4 text-center">
             <div className="text-4xl">✅</div>
-            <div className="mt-2 text-lg font-semibold text-white">Pagamento feito com sucesso!</div>
-            <p className="mt-1 text-sm text-zinc-300">
+            <div className="mt-2 text-lg font-semibold text-ink">Pagamento feito com sucesso!</div>
+            <p className="mt-1 text-sm text-ink-soft">
               Sua música está liberada. Feche para ouvir a versão completa.
             </p>
             {orderCode ? (
-              <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3">
-                <div className="text-[10px] uppercase tracking-widest text-amber-300">
+              <div className="mt-4 rounded-xl border border-brand/30 bg-brand/10 px-4 py-3">
+                <div className="text-[10px] uppercase tracking-widest text-brand">
                   Código do seu pedido
                 </div>
-                <div className="text-2xl font-bold tracking-[0.3em] text-white">{orderCode}</div>
-                <p className="mt-1 text-[11px] text-zinc-400">
+                <div className="text-2xl font-bold tracking-[0.3em] text-ink">{orderCode}</div>
+                <p className="mt-1 text-[11px] text-ink-soft">
                   Guarde e envie este código no nosso WhatsApp para receber sua música em alta
                   qualidade.
                 </p>
               </div>
             ) : null}
-            <p className="mt-3 text-[11px] text-zinc-500">
+            <p className="mt-3 text-[11px] text-ink-soft">
               Comprou um pacote com Página VIP? Ela é montada com suas fotos e enviada no seu
               WhatsApp em até 24h.
             </p>
@@ -96,7 +96,7 @@ export function OfferCheckout({
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 block w-full rounded-2xl bg-emerald-500 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-400"
+                className="mt-3 block w-full rounded-2xl bg-emerald-600 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
               >
                 📲 Receber o link no WhatsApp
               </a>
@@ -112,32 +112,32 @@ export function OfferCheckout({
                 className="mx-auto h-52 w-52 rounded-xl bg-white p-2"
               />
             ) : null}
-            <p className="mt-3 text-center text-xs text-zinc-400">
+            <p className="mt-3 text-center text-xs text-ink-soft">
               Abra o app do banco → PIX → Pagar com QR Code, ou copie o código abaixo.
             </p>
             {charge.brCode ? (
               <>
-                <div className="mt-3 max-h-20 overflow-auto break-all rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-[11px] text-zinc-300">
+                <div className="mt-3 max-h-20 overflow-auto break-all rounded-xl border border-hair bg-surface px-3 py-2 text-[11px] text-ink-soft">
                   {charge.brCode}
                 </div>
                 <button
                   type="button"
                   onClick={() => void copyPix()}
-                  className="mt-2 w-full rounded-xl border border-amber-400 bg-amber-500/20 py-2.5 text-sm font-bold text-white transition hover:bg-amber-500/30"
+                  className="mt-2 w-full rounded-xl border border-brand bg-brand/10 py-2.5 text-sm font-bold text-brand transition hover:bg-brand/15"
                 >
                   {copied ? "Código copiado! ✓" : "Copiar código PIX"}
                 </button>
               </>
             ) : null}
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-zinc-400">
-              <span className="h-2 w-2 animate-ping rounded-full bg-amber-400" />
+            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-ink-soft">
+              <span className="h-2 w-2 animate-ping rounded-full bg-brand" />
               Aguardando a confirmação do pagamento…
             </div>
           </div>
         ) : (
-          <div className="mt-8 text-center text-sm text-zinc-400">
+          <div className="mt-8 text-center text-sm text-ink-soft">
             {error ? (
-              <span className="text-red-400">Ops: {error.message}</span>
+              <span className="text-red-500">Ops: {error.message}</span>
             ) : starting ? (
               "Gerando seu PIX…"
             ) : (

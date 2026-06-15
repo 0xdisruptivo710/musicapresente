@@ -23,10 +23,10 @@ export function OfferView({ orderId }: { orderId: string }) {
 
   return (
     <main className="min-h-dvh pb-28">
-      <header className="sticky top-0 z-30 border-b border-white/5 bg-[#100a0a]/70 px-4 py-3 backdrop-blur sm:px-6">
+      <header className="sticky top-0 z-30 border-b border-hair bg-page/70 px-4 py-3 backdrop-blur sm:px-6">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Logo />
-          <Link href="/criar" className="text-xs text-zinc-400 transition hover:text-white">
+          <Link href="/criar" className="text-xs text-ink-soft transition hover:text-ink">
             ← Voltar
           </Link>
         </div>
@@ -35,10 +35,10 @@ export function OfferView({ orderId }: { orderId: string }) {
       <OfferPaywall songs={offer.songs} paid={offer.paid} />
 
       <section className="py-10">
-        <h2 className="mb-1 text-center text-2xl font-bold text-white">
+        <h2 className="mb-1 text-center font-serif text-2xl font-bold text-ink">
           Reações <span className="text-gradient">reais</span>
         </h2>
-        <p className="mb-5 text-center text-sm text-zinc-400">O que dizem nossos clientes</p>
+        <p className="mb-5 text-center text-sm text-ink-soft">O que dizem nossos clientes</p>
         <div className="mx-auto max-w-5xl">
           <Testimonials />
         </div>
@@ -51,16 +51,16 @@ export function OfferView({ orderId }: { orderId: string }) {
           href="/vip/exemplo"
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-auto block max-w-md rounded-2xl border border-amber-400/40 bg-amber-400/[0.06] p-4 text-center transition hover:bg-amber-400/[0.1]"
+          className="mx-auto block max-w-md rounded-2xl border border-brand/30 bg-brand/10 p-4 text-center transition hover:bg-brand/15"
         >
-          <div className="text-sm font-bold text-amber-200">🎁 Ver Exemplo de Página VIP</div>
-          <div className="mt-0.5 text-xs text-zinc-400">Transforme sua música em um presente ✨</div>
-          <div className="mt-1 text-[11px] text-amber-300/70">Pronta em até 24h, enviada no seu WhatsApp</div>
+          <div className="text-sm font-bold text-brand">🎁 Ver Exemplo de Página VIP</div>
+          <div className="mt-0.5 text-xs text-ink-soft">Transforme sua música em um presente ✨</div>
+          <div className="mt-1 text-[11px] text-brand/80">Pronta em até 24h, enviada no seu WhatsApp</div>
         </a>
       </div>
 
       {offer.loading ? (
-        <p className="py-10 text-center text-sm text-zinc-500">Carregando pacotes…</p>
+        <p className="py-10 text-center text-sm text-ink-soft">Carregando pacotes…</p>
       ) : (
         <PackageSelector
           packages={offer.packages}

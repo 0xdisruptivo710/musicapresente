@@ -128,6 +128,50 @@ export const OCCASIONS: Occasion[] = [
   { emoji: "💍", title: "Casamento", desc: "Trilha da cerimônia" },
   { emoji: "👩", title: "Dia das Mães", desc: "Homenagem que emociona" },
   { emoji: "🥳", title: "15 Anos", desc: "Para a debutante" },
+  { emoji: "👨", title: "Dia dos Pais", desc: "Pro herói da família" },
+  { emoji: "💐", title: "Bodas", desc: "Anos de amor em música" },
+  { emoji: "🤝", title: "Amizade", desc: "Pra quem é família" },
+  { emoji: "🎓", title: "Formatura", desc: "A conquista cantada" },
+];
+
+/** Vídeo do hero (loop). Asset autorizado em /public/landing. */
+export const HERO_VIDEO = {
+  src: "/landing/hero-loop.mp4",
+  poster: "/landing/maeefilha.png",
+};
+
+/** Vídeo de reações reais (montagem) exibido na seção escura "Histórias reais". */
+export const REACTION_VIDEO = "/landing/reactions.mp4";
+
+/** Avatares (prova social) — reaproveita prints reais de clientes. */
+export const PROOF_AVATARS: string[] = [
+  "/landing/depoimento1.jpg",
+  "/landing/depoimento2.jpg",
+  "/landing/depoimento3.jpg",
+  "/landing/depoimento5.jpg",
+];
+
+export interface ExampleTrack {
+  src: string;
+  title: string;
+  subtitle: string;
+  tag: string;
+}
+
+/** Exemplo de música completa tocável na seção escura. Asset autorizado. */
+export const EXAMPLE_TRACKS: ExampleTrack[] = [
+  {
+    src: "/landing/exemplo-musica.mp3",
+    title: "Nossa história",
+    subtitle: "Feita para um casal apaixonado",
+    tag: "Exemplo Pop/Acústico",
+  },
+  {
+    src: "/landing/sueli.mp3",
+    title: "Para a filha da Sueli",
+    subtitle: "Presente de aniversário",
+    tag: "Exemplo emocionante",
+  },
 ];
 
 export interface Faq {

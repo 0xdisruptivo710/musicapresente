@@ -30,22 +30,22 @@ export function Drawer({
         }`}
       />
       <div
-        className={`absolute top-0 flex h-full w-[86%] max-w-sm flex-col bg-[#1a0e12] shadow-2xl transition-transform duration-300 ${
+        className={`absolute top-0 flex h-full w-[86%] max-w-sm flex-col bg-page shadow-2xl transition-transform duration-300 ${
           side === "right" ? "right-0 border-l" : "left-0 border-r"
-        } border-white/10 ${open ? "translate-x-0" : hidden}`}
+        } border-hair ${open ? "translate-x-0" : hidden}`}
       >
-        <div className="flex items-center justify-between border-b border-white/5 px-5 py-4">
+        <div className="flex items-center justify-between border-b border-hair px-5 py-4">
           <div>
             {subtitle ? (
-              <div className="text-[10px] uppercase tracking-widest text-zinc-500">{subtitle}</div>
+              <div className="text-[10px] uppercase tracking-widest text-ink-soft">{subtitle}</div>
             ) : null}
-            <div className="text-base font-semibold text-white">{title}</div>
+            <div className="text-base font-semibold text-ink">{title}</div>
           </div>
           <button
             type="button"
             onClick={onClose}
             aria-label="Fechar"
-            className="rounded-lg px-2 py-1 text-zinc-400 transition hover:text-white"
+            className="rounded-lg px-2 py-1 text-ink-soft transition hover:text-ink"
           >
             ✕
           </button>

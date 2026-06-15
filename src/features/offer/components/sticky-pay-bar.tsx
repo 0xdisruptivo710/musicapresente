@@ -13,19 +13,19 @@ export function StickyPayBar({
   busy: boolean;
 }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#1a0e12]/95 px-4 py-3 backdrop-blur sm:px-6">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-hair bg-page/95 px-4 py-3 backdrop-blur sm:px-6">
       <div className="mx-auto flex max-w-3xl items-center gap-3">
         <div className="shrink-0">
-          <div className="text-[10px] uppercase tracking-widest text-zinc-500">Total a pagar</div>
-          <div className="text-lg font-bold text-white">
-            {formatBRL(totalCents)} <span className="text-xs font-normal text-zinc-400">PIX</span>
+          <div className="text-[10px] uppercase tracking-widest text-ink-soft">Total a pagar</div>
+          <div className="text-lg font-bold text-ink">
+            {formatBRL(totalCents)} <span className="text-xs font-normal text-ink-soft">PIX</span>
           </div>
         </div>
         <button
           type="button"
           onClick={onPay}
           disabled={busy || totalCents <= 0}
-          style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
+          style={{ background: "linear-gradient(90deg,#b66d5b,#a05f4e)" }}
           className="flex-1 rounded-2xl py-3 text-sm font-bold text-white transition hover:opacity-95 disabled:opacity-60"
         >
           {busy ? "Gerando PIX…" : "⚡ Pagar no Pix"}

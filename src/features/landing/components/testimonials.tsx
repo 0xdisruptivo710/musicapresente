@@ -20,7 +20,7 @@ function DepoAudioButton({ src }: { src: string }) {
     <button
       type="button"
       onClick={toggle}
-      className="mt-2 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-500/25"
+      className="mt-2 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1.5 text-xs font-semibold text-brand transition hover:bg-brand/20"
     >
       <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
         {playing ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M8 5v14l11-7z" />}
@@ -30,6 +30,8 @@ function DepoAudioButton({ src }: { src: string }) {
         ref={ref}
         src={src}
         preload="none"
+        controlsList="nodownload"
+        onContextMenu={(e) => e.preventDefault()}
         onPlay={() => {
           document.querySelectorAll("audio").forEach((el) => {
             if (el !== ref.current) el.pause();
@@ -46,10 +48,10 @@ function DepoAudioButton({ src }: { src: string }) {
 /** Carrossel horizontal de prints reais de clientes (com áudio em alguns). */
 export function Testimonials() {
   return (
-    <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:px-6 [-ms-overflow-style:none] [scrollbar-width:none]">
+    <div className="hide-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:px-6">
       {TESTIMONIALS.map((t) => (
         <div key={t.image} className="w-[228px] shrink-0 snap-center sm:w-[252px]">
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30">
+          <div className="overflow-hidden rounded-2xl border border-hair bg-white shadow-sm">
             <div className="relative aspect-[9/16] w-full">
               <Image
                 src={t.image}
@@ -61,8 +63,8 @@ export function Testimonials() {
             </div>
           </div>
           <div className="mt-3 px-1">
-            <div className="text-[11px] text-zinc-500">🗓 {t.date}</div>
-            <div className="mt-1 text-sm leading-snug text-zinc-200">{t.message}</div>
+            <div className="text-[11px] text-ink-soft/80">🗓 {t.date}</div>
+            <div className="mt-1 text-sm leading-snug text-ink">{t.message}</div>
             {t.audio ? <DepoAudioButton src={t.audio} /> : null}
           </div>
         </div>

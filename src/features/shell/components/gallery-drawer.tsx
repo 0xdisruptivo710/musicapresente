@@ -18,20 +18,20 @@ function GalleryItem({ orderId, onNavigate }: { orderId: string; onNavigate: () 
     <Link
       href={`/oferta/${orderId}`}
       onClick={onNavigate}
-      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition hover:bg-white/[0.06]"
+      className="flex items-center gap-3 rounded-2xl border border-hair bg-white p-3 transition hover:bg-surface/40"
     >
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/30 to-orange-500/20 text-lg">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand/25 to-brand/10 text-lg">
         🎵
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block truncate text-sm font-semibold text-white">
+        <span className="block truncate text-sm font-semibold text-ink">
           {song?.title ?? "Sua música"}
         </span>
-        <span className="block text-[11px] text-zinc-500">
+        <span className="block text-[11px] text-ink-soft">
           {isLoading ? "Carregando…" : ready ? "Pronta para ouvir" : "Em produção…"}
         </span>
       </span>
-      <span className="text-zinc-600">›</span>
+      <span className="text-ink-soft">›</span>
     </Link>
   );
 }
@@ -50,13 +50,13 @@ export function GalleryDrawer({
       {!open ? null : songs.length === 0 ? (
         <div className="mt-8 text-center">
           <div className="text-4xl">🎶</div>
-          <p className="mt-3 text-sm text-zinc-400">
+          <p className="mt-3 text-sm text-ink-soft">
             Você ainda não criou nenhuma música. Elas aparecem aqui automaticamente.
           </p>
           <Link
             href="/criar"
             onClick={onClose}
-            className="mt-4 inline-block rounded-xl bg-amber-500/20 px-4 py-2 text-sm font-semibold text-amber-200 transition hover:bg-amber-500/30"
+            className="mt-4 inline-block rounded-xl bg-brand/10 px-4 py-2 text-sm font-semibold text-brand transition hover:bg-brand/15"
           >
             Criar minha primeira música
           </Link>

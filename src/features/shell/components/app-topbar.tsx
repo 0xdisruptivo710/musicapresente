@@ -14,20 +14,20 @@ export function AppTopbar({
   onOpenMenu: () => void;
 }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/5 bg-[#100a0a]/80 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-hair bg-page/80 backdrop-blur">
       <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
         <Link href="/" aria-label="Início">
           <Logo />
         </Link>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 rounded-full border border-white/10 px-2.5 py-1.5 text-xs text-zinc-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="flex items-center gap-1.5 rounded-full border border-hair px-2.5 py-1.5 text-xs text-ink-soft">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
             {count}
           </span>
           <button
             type="button"
             onClick={onOpenGallery}
-            className="flex items-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-500/15 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-500/25"
+            className="flex items-center gap-1.5 rounded-xl border border-brand/30 bg-brand/10 px-3 py-1.5 text-xs font-semibold text-brand transition hover:bg-brand/15"
           >
             🎵 Galeria
           </button>
@@ -35,7 +35,7 @@ export function AppTopbar({
             type="button"
             onClick={onOpenMenu}
             aria-label="Abrir menu"
-            className="rounded-xl border border-white/10 px-2.5 py-1.5 text-zinc-300 transition hover:bg-white/5"
+            className="rounded-xl border border-hair px-2.5 py-1.5 text-ink-soft transition hover:bg-surface/40"
           >
             ☰
           </button>

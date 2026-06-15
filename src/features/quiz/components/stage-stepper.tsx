@@ -23,24 +23,24 @@ export function StageStepper({ current }: { current: Stage }) {
               <div
                 className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${
                   done
-                    ? "bg-emerald-500 text-white"
+                    ? "bg-emerald-600 text-white"
                     : active
-                      ? "bg-orange-500 text-white"
-                      : "border border-white/15 text-zinc-500"
+                      ? "bg-brand text-white"
+                      : "border border-hair text-ink-soft"
                 }`}
               >
                 {done ? "✓" : i + 1}
               </div>
               <span
                 className={`text-[10px] font-semibold uppercase tracking-wider ${
-                  active ? "text-white" : done ? "text-emerald-400" : "text-zinc-600"
+                  active ? "text-ink" : done ? "text-emerald-600" : "text-ink-soft"
                 }`}
               >
                 {stage.label}
               </span>
             </div>
             {i < STAGES.length - 1 ? (
-              <div className={`mb-4 h-px w-8 ${i < currentIdx ? "bg-emerald-500" : "bg-white/15"}`} />
+              <div className={`mb-4 h-px w-8 ${i < currentIdx ? "bg-emerald-600" : "bg-hair"}`} />
             ) : null}
           </Fragment>
         );

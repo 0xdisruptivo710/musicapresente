@@ -1,8 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --color-accent: #f59e0b;
+  /* ===== Tipografia ===== */
+  --font-sans: var(--font-inter-tight), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-lora), Georgia, "Times New Roman", serif;
+
+  /* ===== Paleta editorial "Creme & Terracota" — padrão do app ===== */
+  --color-page: #fffaf5;
+  --color-surface: #fceae6;
+  --color-surface-2: #f5e4e0;
+  --color-ink: #1a1212;
+  --color-ink-soft: #7a6b67;
+  --color-brand: #b66d5b;
+  --color-brand-hover: #a05f4e;
+  --color-brand-deep: #3a2e2b;
+  --color-night: #110f0e;
+  --color-night-2: #1c1918;
+  --color-hair: #e8ded8;
+  /* compat: utilitários `*-accent` antigos agora apontam pro terracota */
+  --color-accent: #b66d5b;
+
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 html,
@@ -10,23 +38,28 @@ body {
   min-height: 100%;
 }
 
-/* Cor base no html cobre TODA a área de rolagem — elimina a "emenda" no fundo. */
+/* Cor base no html cobre TODA a área de rolagem (inclui overscroll). */
 html {
-  background-color: #100a0a;
+  background-color: var(--color-page);
 }
 
 body {
   min-height: 100dvh;
-  /* Dourado & Vinho: glow âmbar no topo + toque de vinho, fundo fixo. */
+  /* Glow terracota suave no topo, fundo creme fixo. */
   background:
-    radial-gradient(900px 520px at 50% -8%, rgba(245, 158, 11, 0.16), transparent 60%),
-    radial-gradient(640px 480px at 100% 2%, rgba(190, 18, 60, 0.12), transparent 55%),
-    #100a0a;
+    radial-gradient(900px 520px at 50% -10%, rgba(182, 109, 91, 0.1), transparent 60%),
+    var(--color-page);
   background-attachment: fixed;
   background-repeat: no-repeat;
-  color: #ededed;
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Utilitário para seções/blocos escuros (contraste de mídia). */
+.theme-dark {
+  background-color: var(--color-night);
+  color: #f5f1ee;
 }
 
 /* Entrada suave das mensagens do chat */
@@ -44,9 +77,9 @@ body {
   animation: rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Título com gradiente quente */
+/* Título com gradiente terracota (repaginado do antigo âmbar) */
 .text-gradient {
-  background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706);
+  background: linear-gradient(90deg, #c97a64, #b66d5b, #8a4f41);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -65,7 +98,42 @@ body {
   animation: indeterminate 1.4s ease-in-out infinite;
 }
 
+/* Esconde scrollbar em carrosséis horizontais */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Faixa de CTA terracota */
+.cta-gradient {
+  background: linear-gradient(135deg, #b66d5b 0%, #8a4f41 100%);
+}
+
+/* Divisor com coraçãozinho ao centro */
+.heart-divider {
+  position: relative;
+  text-align: center;
+}
+.heart-divider::before,
+.heart-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 20px);
+  height: 1px;
+  background: var(--color-hair);
+}
+.heart-divider::before {
+  left: 0;
+}
+.heart-divider::after {
+  right: 0;
+}
+
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-color: rgba(26, 18, 18, 0.18) transparent;
 }

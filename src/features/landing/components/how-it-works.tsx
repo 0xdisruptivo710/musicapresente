@@ -6,10 +6,15 @@ export function HowItWorks() {
   return (
     <section id="como-funciona" className="px-4 py-16 sm:px-6">
       <div className="mx-auto max-w-3xl">
-        <Reveal className="mb-8">
+        <Reveal className="mb-10 flex justify-center">
           <SectionHeading
-            tag="Como funciona"
-            title={<>Sua música personalizada em <span className="text-gradient">5 passos</span></>}
+            center
+            tag="Processo simples"
+            title={
+              <>
+                Como a <span className="text-gradient">magia acontece</span>
+              </>
+            }
             sub="Sem precisar saber cantar, tocar ou compor. Só uma história pra contar."
           />
         </Reveal>
@@ -17,19 +22,21 @@ export function HowItWorks() {
         <div className="flex flex-col gap-4">
           {STEPS.map((step, i) => (
             <Reveal key={step.num} delay={i * 60}>
-              <div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                <div
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
-                  style={{ background: "linear-gradient(135deg,#fbbf24,#f59e0b,#d97706)" }}
-                >
+              <div className="relative overflow-hidden rounded-3xl border border-hair bg-white p-6 shadow-sm sm:p-7">
+                <span className="pointer-events-none absolute -right-3 -top-8 select-none font-serif text-[140px] font-semibold italic leading-none text-surface">
                   {step.num}
-                </div>
-                <div>
-                  <div className="font-semibold text-white">
-                    {step.emoji} {step.title}
+                </span>
+                <div className="relative flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-sm font-bold text-ink">
+                    {step.num}
                   </div>
-                  <div className="mt-1 text-sm text-zinc-400">{step.desc}</div>
-                  <div className="mt-2 text-sm italic text-amber-300/90">{step.emotion}</div>
+                  <div>
+                    <h3 className="font-serif text-xl text-ink">
+                      {step.emoji} {step.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-soft">{step.desc}</p>
+                    <p className="mt-2 text-sm italic text-brand">{step.emotion}</p>
+                  </div>
                 </div>
               </div>
             </Reveal>

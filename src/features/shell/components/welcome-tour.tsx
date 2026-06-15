@@ -57,16 +57,16 @@ export function WelcomeTour() {
   return (
     <div className="fixed inset-0 z-[60]">
       <button type="button" aria-label="Pular tour" onClick={close} className="absolute inset-0 bg-black/70" />
-      <div className="absolute right-3 top-[64px] w-[min(92vw,340px)] rounded-2xl border border-amber-500/30 bg-[#1f1016] p-4 shadow-2xl">
-        <div className="absolute -top-2 right-6 h-4 w-4 rotate-45 border-l border-t border-amber-500/30 bg-[#1f1016]" />
+      <div className="absolute right-3 top-[64px] w-[min(92vw,340px)] rounded-2xl border border-brand/30 bg-page p-4 shadow-2xl">
+        <div className="absolute -top-2 right-6 h-4 w-4 rotate-45 border-l border-t border-brand/30 bg-page" />
         <div className="relative">
-          <div className="text-[11px] font-semibold uppercase tracking-widest text-amber-300">
+          <div className="text-[11px] font-semibold uppercase tracking-widest text-brand">
             Passo {step + 1}/{STEPS.length}
           </div>
-          <div className="mt-1 text-base font-semibold text-white">{current.title}</div>
-          <p className="mt-1 text-sm text-zinc-300">{current.body}</p>
+          <div className="mt-1 text-base font-semibold text-ink">{current.title}</div>
+          <p className="mt-1 text-sm text-ink-soft">{current.body}</p>
           <div className="mt-4 flex items-center justify-between gap-2">
-            <button type="button" onClick={close} className="text-xs text-zinc-500 transition hover:text-zinc-300">
+            <button type="button" onClick={close} className="text-xs text-ink-soft transition hover:text-ink">
               Pular
             </button>
             <div className="flex gap-2">
@@ -74,7 +74,7 @@ export function WelcomeTour() {
                 <button
                   type="button"
                   onClick={() => setStep(step - 1)}
-                  className="rounded-xl border border-white/15 px-4 py-2 text-sm text-zinc-200 transition hover:bg-white/5"
+                  className="rounded-xl border border-hair px-4 py-2 text-sm text-ink transition hover:bg-surface/40"
                 >
                   Voltar
                 </button>
@@ -82,8 +82,7 @@ export function WelcomeTour() {
               <button
                 type="button"
                 onClick={() => (last ? close() : setStep(step + 1))}
-                style={{ background: "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)" }}
-                className="rounded-xl px-4 py-2 text-sm font-semibold text-white transition hover:opacity-95"
+                className="cta-gradient rounded-xl px-4 py-2 text-sm font-semibold text-white transition hover:opacity-95"
               >
                 {last ? "Começar" : "Próximo"}
               </button>

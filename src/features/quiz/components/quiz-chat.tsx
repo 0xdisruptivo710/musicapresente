@@ -45,7 +45,7 @@ export function QuizChat() {
           <button
             type="button"
             onClick={quiz.goBack}
-            className="rounded-lg px-3 py-1.5 text-xs font-medium text-zinc-400 transition hover:text-white"
+            className="rounded-lg px-3 py-1.5 text-xs font-medium text-ink-soft transition hover:text-ink"
           >
             ← Voltar
           </button>
@@ -58,7 +58,7 @@ export function QuizChat() {
             Olá! Uma música personalizada é um dos presentes mais emocionantes que
             alguém pode receber. 🎵
           </p>
-          <p className="mt-2 text-zinc-400">Vamos montar a sua em 5 passos rápidos.</p>
+          <p className="mt-2 text-ink-soft">Vamos montar a sua em 5 passos rápidos.</p>
         </SystemBubble>
 
         {/* Resumo das escolhas já feitas */}
@@ -107,7 +107,7 @@ export function QuizChat() {
               <p>
                 🎚️ <strong>Misture os ritmos!</strong>
               </p>
-              <p className="mt-1 text-zinc-400">
+              <p className="mt-1 text-ink-soft">
                 Escolha <strong>1 estilo</strong> ou combine <strong>2</strong> para criar uma
                 fusão única.
               </p>
@@ -119,7 +119,7 @@ export function QuizChat() {
               lockUnselected={s.genres.length >= MAX_GENRES}
             />
             {s.genres.length >= MAX_GENRES ? (
-              <p className="self-start text-xs text-zinc-500">
+              <p className="self-start text-xs text-ink-soft">
                 Máximo de {MAX_GENRES} ritmos, desmarque um para trocar.
               </p>
             ) : null}
@@ -150,19 +150,19 @@ export function QuizChat() {
                 value={name}
                 onChange={(event) => setName(event.target.value)}
                 placeholder="Nome do homenageado(a)"
-                className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-amber-400"
+                className="rounded-xl border border-hair bg-white px-4 py-3 text-sm text-ink outline-none placeholder:text-ink-soft focus:border-brand"
               />
               <textarea
                 value={story}
                 onChange={(event) => setStory(event.target.value)}
                 rows={5}
                 placeholder="Conte a história de vocês, detalhes, apelidos, momentos marcantes... (ou grave um áudio abaixo)"
-                className="resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-amber-400"
+                className="resize-none rounded-xl border border-hair bg-white px-4 py-3 text-sm text-ink outline-none placeholder:text-ink-soft focus:border-brand"
               />
-              <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-zinc-600">
-                <span className="h-px flex-1 bg-white/10" />
+              <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-ink-soft">
+                <span className="h-px flex-1 bg-hair" />
                 ou
-                <span className="h-px flex-1 bg-white/10" />
+                <span className="h-px flex-1 bg-hair" />
               </div>
               <AudioRecorder
                 onTranscribed={(text) =>
@@ -209,7 +209,7 @@ export function QuizChat() {
                 busy={quiz.lyricsGenerating}
               />
               {quiz.lyricsGenerating ? (
-                <p className="self-start text-sm text-zinc-400">Reescrevendo a letra…</p>
+                <p className="self-start text-sm text-ink-soft">Reescrevendo a letra…</p>
               ) : null}
               <SystemBubble>E a voz da música, como você prefere?</SystemBubble>
               <OptionGrid
@@ -247,8 +247,7 @@ export function QuizChat() {
               {quiz.orderId ? (
                 <Link
                   href={`/oferta/${quiz.orderId}`}
-                  style={{ background: "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)" }}
-                  className="block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white transition hover:opacity-95"
+                  className="cta-gradient block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white transition hover:opacity-95"
                 >
                   🔓 Gostou? Desbloquear minha música
                 </Link>
@@ -275,7 +274,7 @@ export function QuizChat() {
               <StageStepper current="music" />
               <MusicProgress />
               {quiz.whatsappSaved ? (
-                <div className="animate-rise self-stretch rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-4 text-center text-sm text-emerald-200">
+                <div className="animate-rise self-stretch rounded-2xl border border-emerald-600/30 bg-emerald-500/[0.08] p-4 text-center text-sm text-emerald-700">
                   ✅ Pronto! Te avisamos no WhatsApp assim que a música ficar pronta.
                 </div>
               ) : (
@@ -290,7 +289,7 @@ export function QuizChat() {
         ) : null}
 
         {quiz.error ? (
-          <p className="self-start text-sm text-red-400">Ops: {quiz.error.message}</p>
+          <p className="self-start text-sm text-red-500">Ops: {quiz.error.message}</p>
         ) : null}
       </div>
 

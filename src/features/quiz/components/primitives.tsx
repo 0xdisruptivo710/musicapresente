@@ -3,8 +3,7 @@
 import type { ReactNode } from "react";
 import type { OptionItem } from "@/features/quiz/data";
 
-const CTA_GRADIENT = "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)";
-const BAR_GRADIENT = "linear-gradient(90deg,#fbbf24,#f59e0b,#d97706)";
+const BAR_GRADIENT = "linear-gradient(90deg,#b66d5b,#a05f4e)";
 
 export function GradientButton({
   children,
@@ -24,8 +23,7 @@ export function GradientButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      style={{ background: CTA_GRADIENT }}
-      className={`inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold tracking-wide text-white transition hover:opacity-95 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+      className={`cta-gradient inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold tracking-wide text-white transition hover:opacity-95 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
     >
       {children}
     </button>
@@ -34,7 +32,7 @@ export function GradientButton({
 
 export function SystemBubble({ children }: { children: ReactNode }) {
   return (
-    <div className="animate-rise max-w-[88%] self-start rounded-2xl rounded-tl-sm border border-white/5 bg-white/[0.04] px-5 py-4 text-[15px] leading-relaxed text-zinc-200 backdrop-blur">
+    <div className="animate-rise max-w-[88%] self-start rounded-2xl rounded-tl-sm border border-hair bg-white px-5 py-4 text-[15px] leading-relaxed text-ink">
       {children}
     </div>
   );
@@ -51,16 +49,16 @@ export function ChoiceCard({
 }) {
   return (
     <div
-      className="animate-rise flex items-center gap-3 self-end rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-3"
-      style={{ boxShadow: "0 0 24px -6px rgba(245,158,11,0.45)" }}
+      className="animate-rise flex items-center gap-3 self-end rounded-2xl border border-brand/40 bg-brand/10 px-5 py-3"
+      style={{ boxShadow: "0 0 24px -6px rgba(182,109,91,0.40)" }}
     >
       <span className="text-2xl">{emoji}</span>
       <div className="text-right">
-        <div className="text-[10px] font-semibold uppercase tracking-widest text-amber-300">
+        <div className="text-[10px] font-semibold uppercase tracking-widest text-brand">
           Sua escolha
         </div>
-        <div className="font-semibold text-white">{label}</div>
-        {sublabel ? <div className="text-xs text-zinc-400">{sublabel}</div> : null}
+        <div className="font-semibold text-ink">{label}</div>
+        {sublabel ? <div className="text-xs text-ink-soft">{sublabel}</div> : null}
       </div>
     </div>
   );
@@ -94,14 +92,14 @@ export function OptionGrid({
             onClick={() => onSelect(option)}
             className={`flex flex-col items-center gap-2 rounded-2xl border px-3 py-5 text-center transition active:scale-[0.98] ${
               selected
-                ? "border-amber-400 bg-amber-500/15"
+                ? "border-brand bg-brand/15"
                 : disabled
-                  ? "cursor-not-allowed border-white/10 bg-white/[0.02] opacity-40"
-                  : "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
+                  ? "cursor-not-allowed border-hair bg-white opacity-40"
+                  : "border-hair bg-white hover:border-brand/40 hover:bg-surface/40"
             }`}
           >
             <span className="text-2xl">{option.emoji}</span>
-            <span className="text-sm font-medium text-zinc-200">{option.label}</span>
+            <span className="text-sm font-medium text-ink">{option.label}</span>
           </button>
         );
       })}
@@ -123,15 +121,15 @@ export function ProgressFooter({
   const pct = Math.min(100, Math.round((step / total) * 100));
   return (
     <div className="sticky bottom-0 z-10 mt-6 pt-2">
-      <div className="rounded-2xl border border-white/10 bg-[#1a0e12]/90 px-5 py-3 backdrop-blur">
-        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
+      <div className="rounded-2xl border border-hair bg-surface/80 px-5 py-3 backdrop-blur">
+        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-widest text-ink-soft">
           <span>
             Etapa {Math.min(step, total)}/{total}
           </span>
           <span>{label}</span>
         </div>
-        {hint ? <div className="mt-1 text-xs text-zinc-500">{hint}</div> : null}
-        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+        {hint ? <div className="mt-1 text-xs text-ink-soft">{hint}</div> : null}
+        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
           <div
             className="h-full rounded-full transition-all duration-500"
             style={{ width: `${pct}%`, background: BAR_GRADIENT }}
@@ -150,10 +148,10 @@ export function LoadingCard({
   subtitle: string;
 }) {
   return (
-    <div className="animate-rise w-full max-w-md self-start rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-      <div className="text-center font-semibold text-white">{title}</div>
-      <div className="mt-1 text-center text-sm italic text-zinc-400">{subtitle}</div>
-      <div className="relative mt-4 h-2 w-full overflow-hidden rounded-full bg-white/10">
+    <div className="animate-rise w-full max-w-md self-start rounded-2xl border border-hair bg-white p-6">
+      <div className="text-center font-semibold text-ink">{title}</div>
+      <div className="mt-1 text-center text-sm italic text-ink-soft">{subtitle}</div>
+      <div className="relative mt-4 h-2 w-full overflow-hidden rounded-full bg-surface-2">
         <div
           className="animate-indeterminate absolute inset-y-0 left-0 w-1/3 rounded-full"
           style={{ background: BAR_GRADIENT }}
